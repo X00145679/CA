@@ -15,8 +15,15 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
 
-@SequenceGenerator(name = "pid_seq", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "petid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
 public class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petid_seq")
+    private String petname;
+    private String petDOB;
+    private String petDatePurchased;
+    private int breedid,ownid;
+    
     
 }

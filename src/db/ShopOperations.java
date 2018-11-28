@@ -109,9 +109,9 @@ public class ShopOperations {
             System.out.print("Problem with Owner Sequence " + ex.getMessage());
         }
     }
-    
+
     //Food Sequence
-        public void dropFoodSequence() {
+    public void dropFoodSequence() {
         try {
             String s2 = "drop sequence fid_seq";
             pstmt = conn.prepareStatement(s2);
@@ -133,10 +133,10 @@ public class ShopOperations {
             System.out.print("Problem with Food Sequence " + ex.getMessage());
         }
     }
-    
+
     //Tables
     //Pet Table
-        public void dropPETTable() {
+    public void dropPETTable() {
         System.out.println("Checking for existence of PET table");
         try {
             String s1 = "DROP TABLE PET CASCADE CONSTRAINTS";
@@ -152,19 +152,169 @@ public class ShopOperations {
         // Create a Table           
         try {
             String sql = "CREATE TABLE PET (petid NUMBER PRIMARY KEY NOT NULL,"
-                    + "petname VARCHAR2(50),"
+                    + "petname VARCHAR2(255),"
                     + "petDOB DATE,"
-                    + "petDatePurchased,"
+                    + "petDatePurchased DATE,"
                     + "breedid NUMBER,"
                     + "ownid NUMBER,"
                     + "FOREIGN KEY (bid)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
-            System.out.println("TABLE DEPARTMENT created");
+            System.out.println("TABLE PET created");
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
-                    + "DEPARTMENT table" + ex.getMessage());
+                    + "Pet table" + ex.getMessage());
+        }
+    }
+    
+       //Owner Table
+    public void dropOwnerTable() {
+        System.out.println("Checking for existence of Owner table");
+        try {
+            String s1 = "DROP TABLE OWNER CASCADE CONSTRAINTS";
+            pstmt = conn.prepareStatement(s1);
+            pstmt.executeUpdate();
+            System.out.println("Owner  table dropped");
+        } catch (SQLException ex) {
+
+        }
+    }
+    
+        public void createOwnertable() {
+        // Create a Table           
+        try {
+            String sql = "CREATE TABLE OWNER (ownid NUMBER PRIMARY KEY NOT NULL,"
+                    + "o_name VARCHAR2(255),"
+                    + "o_address VARCHAR2(255),"
+                    + "o_pnum VARCHAR2(255),";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+            System.out.println("TABLE OWNER created");
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception creating "
+                    + "Owner table" + ex.getMessage());
+        }
+    }
+        
+        
+    //Breed Table
+        
+        public void dropBreedTable() {
+        System.out.println("Checking for existence of Breed table");
+        try {
+            String s1 = "DROP TABLE BREED CASCADE CONSTRAINTS";
+            pstmt = conn.prepareStatement(s1);
+            pstmt.executeUpdate();
+            System.out.println("Breed  table dropped");
+        } catch (SQLException ex) {
+
+        }
+    }
+        
+                public void createBreedtable() {
+        // Create a Table           
+        try {
+            String sql = "CREATE TABLE BREED (breedid NUMBER PRIMARY KEY NOT NULL,"
+                    + "b_name VARCHAR2(255),"
+                    + "b_exp_years VARCHAR2(255),"
+                    + "b_size VARCHAR2(255),";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+            System.out.println("TABLE BREED created");
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception creating "
+                    + "Breed table" + ex.getMessage());
+        }
+    }
+    
+    
+
+    // Fill pet Table
+    public void fillPetTable() {
+        try {
+            String sql = "INSERT INTO PET VALUES(petid_seq.nextVal,?,?)";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, "Bob");
+            pstmt.setDate(2, Date.valueOf("2016-01-31"));
+            pstmt.setDate(3, Date.valueOf("2018-02-03"));
+            pstmt.setInt(4, 1);
+            pstmt.setInt(5, 1);
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1, "Doge");
+            pstmt.setDate(2, Date.valueOf("2017-03-20"));
+            pstmt.setDate(3, Date.valueOf("2018-02-07"));
+            pstmt.setInt(4, 2);
+            pstmt.setInt(5, 2);
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1, "Rocky");
+            pstmt.setDate(2, Date.valueOf("2017-05-23"));
+            pstmt.setDate(3, Date.valueOf("2018-05-24"));
+            pstmt.setInt(4, 3);
+            pstmt.setInt(5, 3);
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1, "Aaron");
+            pstmt.setDate(2, Date.valueOf("2018-01-31"));
+            pstmt.setDate(3, Date.valueOf("2018-04-03"));
+            pstmt.setInt(4, 4);
+            pstmt.setInt(5, 4);
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1, "Rex");
+            pstmt.setDate(2, Date.valueOf("2018-01-21"));
+            pstmt.setDate(3, Date.valueOf("2018-04-05"));
+            pstmt.setInt(4, 5);
+            pstmt.setInt(5, 5);
+            pstmt.executeUpdate();
+            
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception filling "
+                    + "PET table" + ex.getMessage());
+        }
+    }
+    
+    
+            // Fill Owner Table
+    public void fillOwnerTable() {
+        try {
+            String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?)";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1,"Dave");
+            pstmt.setString(2,"123 Lane rd");
+            pstmt.setString(3,"0873974053");
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1,"Matt");
+            pstmt.setString(2,"123 Plaza rd");
+            pstmt.setString(3,"0873544033");
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1,"Steve");
+            pstmt.setString(2,"13 place rd");
+            pstmt.setString(3,"0833344053");
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1,"Mike");
+            pstmt.setString(2,"123 Street");
+            pstmt.setString(3,"0853684653");
+            pstmt.executeUpdate();
+            
+            pstmt.setString(1,"Scott");
+            pstmt.setString(2,"133 Lane rd");
+            pstmt.setString(3,"0843678893");
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception filling "
+                    + "MODULE15 table" + ex.getMessage());
         }
     }
 }
