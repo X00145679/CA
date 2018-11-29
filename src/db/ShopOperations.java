@@ -167,8 +167,8 @@ public class ShopOperations {
                     + "Pet table" + ex.getMessage());
         }
     }
-    
-       //Owner Table
+
+    //Owner Table
     public void dropOwnerTable() {
         System.out.println("Checking for existence of Owner table");
         try {
@@ -180,8 +180,8 @@ public class ShopOperations {
 
         }
     }
-    
-        public void createOwnertable() {
+
+    public void createOwnertable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE OWNER (ownid NUMBER PRIMARY KEY NOT NULL,"
@@ -197,11 +197,9 @@ public class ShopOperations {
                     + "Owner table" + ex.getMessage());
         }
     }
-        
-        
+
     //Breed Table
-        
-        public void dropBreedTable() {
+    public void dropBreedTable() {
         System.out.println("Checking for existence of Breed table");
         try {
             String s1 = "DROP TABLE BREED CASCADE CONSTRAINTS";
@@ -212,8 +210,8 @@ public class ShopOperations {
 
         }
     }
-        
-                public void createBreedtable() {
+
+    public void createBreedtable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE BREED (breedid NUMBER PRIMARY KEY NOT NULL,"
@@ -229,8 +227,67 @@ public class ShopOperations {
                     + "Breed table" + ex.getMessage());
         }
     }
-    
-    
+
+    public void dropFOODtable() {
+        System.out.println("Checking for existence of FOOD  table");
+        try {
+            String s1 = "DROP TABLE FOOD CASCADE CONSTRAINTS";
+            pstmt = conn.prepareStatement(s1);
+            pstmt.executeUpdate();
+            System.out.println("FOOD  table dropped");
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void createFOODtable() {
+        // Create a Table           
+        try {
+            String sql = "CREATE TABLE FOOD (fid NUMBER PRIMARY KEY NOT NULL,"
+                    + "food_name VARCHAR2(50),"
+                    + "food_price NUMBER,"
+                    + "food_servings NUMBER,"
+                    + "food_type VARCHAR2(3))";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+            System.out.println("TABLE FOOD created");
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception creating "
+                    + "FOOD table" + ex.getMessage());
+        }
+    }
+
+    public void dropPETFOODtable() {
+        System.out.println("Checking for existence of PETFOOD  table");
+        try {
+            String s1 = "DROP TABLE PETFOOD CASCADE CONSTRAINTS";
+            pstmt = conn.prepareStatement(s1);
+            pstmt.executeUpdate();
+            System.out.println("PETFOOD  table dropped");
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    //PetFood Table
+    public void createPETFOODtable() {
+        // Create a Table           
+        try {
+            String sql = "CREATE TABLE PETFOOD (petid NUMBER,"
+                    + "foodid NUMBER,"
+                    + "PRIMARY KEY (petid, foodid),"
+                    + "FOREIGN KEY (petid) REFERENCES PET (petid),"
+                    + "FOREIGN KEY (foodid) REFERENCES FOOD (foodid))";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+            System.out.println("TABLE PETFOOD created");
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception creating "
+                    + "PETFOOD table" + ex.getMessage());
+        }
+    }
 
     // Fill pet Table
     public void fillPetTable() {
@@ -244,72 +301,70 @@ public class ShopOperations {
             pstmt.setInt(4, 1);
             pstmt.setInt(5, 1);
             pstmt.executeUpdate();
-            
+
             pstmt.setString(1, "Doge");
             pstmt.setDate(2, Date.valueOf("2017-03-20"));
             pstmt.setDate(3, Date.valueOf("2018-02-07"));
             pstmt.setInt(4, 2);
             pstmt.setInt(5, 2);
             pstmt.executeUpdate();
-            
+
             pstmt.setString(1, "Rocky");
             pstmt.setDate(2, Date.valueOf("2017-05-23"));
             pstmt.setDate(3, Date.valueOf("2018-05-24"));
             pstmt.setInt(4, 3);
             pstmt.setInt(5, 3);
             pstmt.executeUpdate();
-            
+
             pstmt.setString(1, "Aaron");
             pstmt.setDate(2, Date.valueOf("2018-01-31"));
             pstmt.setDate(3, Date.valueOf("2018-04-03"));
             pstmt.setInt(4, 4);
             pstmt.setInt(5, 4);
             pstmt.executeUpdate();
-            
+
             pstmt.setString(1, "Rex");
             pstmt.setDate(2, Date.valueOf("2018-01-21"));
             pstmt.setDate(3, Date.valueOf("2018-04-05"));
             pstmt.setInt(4, 5);
             pstmt.setInt(5, 5);
             pstmt.executeUpdate();
-            
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
                     + "PET table" + ex.getMessage());
         }
     }
-    
-    
-            // Fill Owner Table
+
+    // Fill Owner Table
     public void fillOwnerTable() {
         try {
             String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?)";
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1,"Dave");
-            pstmt.setString(2,"123 Lane rd");
-            pstmt.setString(3,"0873974053");
+            pstmt.setString(1, "Dave");
+            pstmt.setString(2, "123 Lane rd");
+            pstmt.setString(3, "0873974053");
             pstmt.executeUpdate();
-            
-            pstmt.setString(1,"Matt");
-            pstmt.setString(2,"123 Plaza rd");
-            pstmt.setString(3,"0873544033");
+
+            pstmt.setString(1, "Matt");
+            pstmt.setString(2, "123 Plaza rd");
+            pstmt.setString(3, "0873544033");
             pstmt.executeUpdate();
-            
-            pstmt.setString(1,"Steve");
-            pstmt.setString(2,"13 place rd");
-            pstmt.setString(3,"0833344053");
+
+            pstmt.setString(1, "Steve");
+            pstmt.setString(2, "13 place rd");
+            pstmt.setString(3, "0833344053");
             pstmt.executeUpdate();
-            
-            pstmt.setString(1,"Mike");
-            pstmt.setString(2,"123 Street");
-            pstmt.setString(3,"0853684653");
+
+            pstmt.setString(1, "Mike");
+            pstmt.setString(2, "123 Street");
+            pstmt.setString(3, "0853684653");
             pstmt.executeUpdate();
-            
-            pstmt.setString(1,"Scott");
-            pstmt.setString(2,"133 Lane rd");
-            pstmt.setString(3,"0843678893");
+
+            pstmt.setString(1, "Scott");
+            pstmt.setString(2, "133 Lane rd");
+            pstmt.setString(3, "0843678893");
             pstmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -317,4 +372,68 @@ public class ShopOperations {
                     + "MODULE15 table" + ex.getMessage());
         }
     }
+
+    //Breed Table
+    public void fillBreedTable() {
+        try {
+            String sql1 = "INSERT INTO BREED VALUES(breedid_seq.nextVal,?,?)";
+            pstmt = conn.prepareStatement(sql1);
+
+            pstmt.setString(1, "Labrador");
+            pstmt.setInt(2, 12);
+            pstmt.setString(3, "Big");
+            pstmt.executeUpdate();
+
+            pstmt.setString(1, "Beagle");
+            pstmt.setInt(2, 13);
+            pstmt.setString(3, "Medium");
+            pstmt.executeUpdate();
+
+            pstmt.setString(1, "Rottweiller");
+            pstmt.setInt(2, 9);
+            pstmt.setString(3, "Big");
+            pstmt.executeUpdate();
+
+            pstmt.setString(1, "Pug");
+            pstmt.setInt(2, 14);
+            pstmt.setString(3, "Small");
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception filling "
+                    + "BREED table" + ex.getMessage());
+        }
+    }
+
+    //Food Table
+    public void fillFoodTable() {
+        try {
+            String sql1 = "INSERT INTO FOOD VALUES(foodid_seq.nextVal,?,?)";
+            pstmt = conn.prepareStatement(sql1);
+
+            pstmt.setString(1, "AATU");
+            pstmt.setDouble(2, 22.99);
+            pstmt.setInt(3, 20);
+            pstmt.setString(2, "Dry");
+
+            pstmt.setString(1, "Applaws");
+            pstmt.setDouble(2, 15.49);
+            pstmt.setInt(3, 30);
+            pstmt.setString(2, "Dry");
+
+            pstmt.setString(1, "Pedigree Pouch");
+            pstmt.setDouble(2, 4.99);
+            pstmt.setInt(3, 12);
+            pstmt.setString(2, "Wet");
+
+            pstmt.setString(1, "Pedigree Classic");
+            pstmt.setDouble(2, 26.99);
+            pstmt.setInt(3, 24);
+            pstmt.setString(2, "Wet");
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception filling "
+                    + "Food table" + ex.getMessage());
+        }
+    }
+
 }
