@@ -21,13 +21,13 @@ public class ShopOperations {
             OracleDataSource ods = new OracleDataSource();
 
             // Tallaght
-//             ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
-//             ods.setUser("x00148542");
-//             ods.setPassword("db21Feb99");
+             ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
+             ods.setUser("x00148542");
+             ods.setPassword("db21Feb99");
             // Home Oracle XE
-            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
-            ods.setUser("hr");
-            ods.setPassword("passhr");
+//            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
+//            ods.setUser("hr");
+//            ods.setPassword("passhr");
 
             conn = ods.getConnection();
             System.out.println("connected.");
@@ -136,7 +136,7 @@ public class ShopOperations {
 
     //Tables
     //Pet Table
-    public void dropPETTable() {
+    public void dropPetTable() {
         System.out.println("Checking for existence of PET table");
         try {
             String s1 = "DROP TABLE PET CASCADE CONSTRAINTS";
@@ -148,7 +148,7 @@ public class ShopOperations {
         }
     }
 
-    public void createPETtable() {
+    public void createPetTable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE PET (petid NUMBER PRIMARY KEY NOT NULL,"
@@ -181,7 +181,7 @@ public class ShopOperations {
         }
     }
 
-    public void createOwnertable() {
+    public void createOwnerTable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE OWNER (ownid NUMBER PRIMARY KEY NOT NULL,"
@@ -211,7 +211,7 @@ public class ShopOperations {
         }
     }
 
-    public void createBreedtable() {
+    public void createBreedTable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE BREED (breedid NUMBER PRIMARY KEY NOT NULL,"
@@ -228,7 +228,7 @@ public class ShopOperations {
         }
     }
 
-    public void dropFOODtable() {
+    public void dropFoodTable() {
         System.out.println("Checking for existence of FOOD  table");
         try {
             String s1 = "DROP TABLE FOOD CASCADE CONSTRAINTS";
@@ -240,7 +240,7 @@ public class ShopOperations {
         }
     }
 
-    public void createFOODtable() {
+    public void createFoodTable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE FOOD (fid NUMBER PRIMARY KEY NOT NULL,"
@@ -258,7 +258,7 @@ public class ShopOperations {
         }
     }
 
-    public void dropPETFOODtable() {
+    public void dropPetFoodTable() {
         System.out.println("Checking for existence of PETFOOD  table");
         try {
             String s1 = "DROP TABLE PETFOOD CASCADE CONSTRAINTS";
@@ -271,7 +271,7 @@ public class ShopOperations {
     }
 
     //PetFood Table
-    public void createPETFOODtable() {
+    public void createPetFoodTable() {
         // Create a Table           
         try {
             String sql = "CREATE TABLE PETFOOD (petid NUMBER,"
