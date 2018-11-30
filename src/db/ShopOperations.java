@@ -113,7 +113,7 @@ public class ShopOperations {
     //Food Sequence
     public void dropFoodSequence() {
         try {
-            String s2 = "drop sequence fid_seq";
+            String s2 = "drop sequence foodid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
             System.out.println("Food Sequence dropped");
@@ -125,7 +125,7 @@ public class ShopOperations {
     public void createFoodSequence() {
         // Creating a sequence    
         try {
-            String createseq1 = "create sequence fid_seq increment by 1 start with 1";
+            String createseq1 = "create sequence foodid_seq increment by 1 start with 1";
             pstmt = conn.prepareStatement(createseq1);
             pstmt.executeUpdate();
             System.out.println("Food Sequence created");
@@ -152,12 +152,13 @@ public class ShopOperations {
         // Create a Table           
         try {
             String sql = "CREATE TABLE PET (petid NUMBER PRIMARY KEY NOT NULL,"
-                    + "petname VARCHAR2(255),"
-                    + "petDOB DATE,"
-                    + "petDatePurchased DATE,"
+                    + "p_name VARCHAR2(255),"
+                    + "p_DOB DATE,"
+                    + "p_DatePurchased DATE,"
                     + "breedid NUMBER,"
                     + "ownid NUMBER,"
-                    + "FOREIGN KEY (bid)";
+                    + "FOREIGN KEY (breedid) REFERENCES BREED (breedid) ON DELETE CASCADE,"
+                    + "FOREIGN KEY (ownid) REFERENCES OWNER (ownid) ON DELETE CASCADE)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -187,7 +188,7 @@ public class ShopOperations {
             String sql = "CREATE TABLE OWNER (ownid NUMBER PRIMARY KEY NOT NULL,"
                     + "o_name VARCHAR2(255),"
                     + "o_address VARCHAR2(255),"
-                    + "o_pnum VARCHAR2(255),";
+                    + "o_pnum VARCHAR2(255))";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -216,8 +217,8 @@ public class ShopOperations {
         try {
             String sql = "CREATE TABLE BREED (breedid NUMBER PRIMARY KEY NOT NULL,"
                     + "b_name VARCHAR2(255),"
-                    + "b_exp_years NUMBERS,"
-                    + "b_size VARCHAR2(255),";
+                    + "b_exp_years NUMBER,"
+                    + "b_size VARCHAR2(255))";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -243,7 +244,7 @@ public class ShopOperations {
     public void createFoodTable() {
         // Create a Table           
         try {
-            String sql = "CREATE TABLE FOOD (fid NUMBER PRIMARY KEY NOT NULL,"
+            String sql = "CREATE TABLE FOOD (foodid NUMBER PRIMARY KEY NOT NULL,"
                     + "food_name VARCHAR2(50),"
                     + "food_price NUMBER,"
                     + "food_servings NUMBER,"
@@ -277,8 +278,8 @@ public class ShopOperations {
             String sql = "CREATE TABLE PETFOOD (petid NUMBER,"
                     + "foodid NUMBER,"
                     + "PRIMARY KEY (petid, foodid),"
-                    + "FOREIGN KEY (petid) REFERENCES PET (petid),"
-                    + "FOREIGN KEY (foodid) REFERENCES FOOD (foodid))";
+                    + "FOREIGN KEY (petid) REFERENCES PET (petid) ON DELETE CASCADE,"
+                    + "FOREIGN KEY (foodid) REFERENCES FOOD (foodid) ON DELETE CASCADE)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -292,7 +293,7 @@ public class ShopOperations {
     // Fill pet Table
     public void fillPetTable() {
         try {
-            String sql = "INSERT INTO PET VALUES(petid_seq.nextVal,?,?)";
+            String sql = "INSERT INTO PET VALUES(petid_seq.nextVal,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, "Bob");
@@ -326,10 +327,11 @@ public class ShopOperations {
             pstmt.setString(1, "Rex");
             pstmt.setDate(2, Date.valueOf("2018-01-21"));
             pstmt.setDate(3, Date.valueOf("2018-04-05"));
-            pstmt.setInt(4, 5);
-            pstmt.setInt(5, 5);
+            pstmt.setInt(4, 4);
+            pstmt.setInt(5, 4);
             pstmt.executeUpdate();
 
+            System.out.println("Pet Table filled");
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
                     + "PET table" + ex.getMessage());
@@ -339,7 +341,7 @@ public class ShopOperations {
     // Fill Owner Table
     public void fillOwnerTable() {
         try {
-            String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?)";
+            String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, "Dave");
@@ -366,6 +368,8 @@ public class ShopOperations {
             pstmt.setString(2, "133 Lane rd");
             pstmt.setString(3, "0843678893");
             pstmt.executeUpdate();
+            
+            System.out.println("Owner table filled");
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
@@ -376,7 +380,7 @@ public class ShopOperations {
     //Breed Table
     public void fillBreedTable() {
         try {
-            String sql1 = "INSERT INTO BREED VALUES(breedid_seq.nextVal,?,?)";
+            String sql1 = "INSERT INTO BREED VALUES(breedid_seq.nextVal,?,?,?)";
             pstmt = conn.prepareStatement(sql1);
 
             pstmt.setString(1, "Labrador");
@@ -398,6 +402,8 @@ public class ShopOperations {
             pstmt.setInt(2, 14);
             pstmt.setString(3, "Small");
             pstmt.executeUpdate();
+            
+            System.out.println("Breed Table filled");
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
                     + "BREED table" + ex.getMessage());
@@ -407,28 +413,34 @@ public class ShopOperations {
     //Food Table
     public void fillFoodTable() {
         try {
-            String sql1 = "INSERT INTO FOOD VALUES(foodid_seq.nextVal,?,?)";
+            String sql1 = "INSERT INTO FOOD VALUES(foodid_seq.nextVal,?,?,?,?)";
             pstmt = conn.prepareStatement(sql1);
 
             pstmt.setString(1, "AATU");
             pstmt.setDouble(2, 22.99);
             pstmt.setInt(3, 20);
-            pstmt.setString(2, "Dry");
+            pstmt.setString(4, "Dry");
+            pstmt.executeUpdate();
 
             pstmt.setString(1, "Applaws");
             pstmt.setDouble(2, 15.49);
             pstmt.setInt(3, 30);
-            pstmt.setString(2, "Dry");
+            pstmt.setString(4, "Dry");
+            pstmt.executeUpdate();
 
             pstmt.setString(1, "Pedigree Pouch");
             pstmt.setDouble(2, 4.99);
             pstmt.setInt(3, 12);
-            pstmt.setString(2, "Wet");
+            pstmt.setString(4, "Wet");
+            pstmt.executeUpdate();
 
             pstmt.setString(1, "Pedigree Classic");
             pstmt.setDouble(2, 26.99);
             pstmt.setInt(3, 24);
-            pstmt.setString(2, "Wet");
+            pstmt.setString(4, "Wet");
+            pstmt.executeUpdate();
+            
+            System.out.println("Food Table filled");
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
