@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PET")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type")
 
 @SequenceGenerator(name = "petid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
@@ -21,19 +20,20 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petid_seq")
     private int petid;
-    private String petname;
+    private String p_name;
     @Temporal(TemporalType.DATE)
-    private String petDOB;
-    private String petDatePurchased;
-    private int breedid,ownid;
+    private Calendar p_dob;
+    private Calendar p_datePurchased;
+    
     
     public Pet() {
     }
 
-    public Pet(String petname, String petDOB, String petDatePurchased) {
-        this.petname = petname;
-        this.petDOB = petDOB;
-        this.petDatePurchased = petDatePurchased;
+    public Pet(int petid, String p_name, Calendar p_dob, Calendar p_datePurchased) {
+        this.petid = petid;
+        this.p_name = p_name;
+        this.p_dob = p_dob;
+        this.p_datePurchased = p_datePurchased;
     }
 
     public int getPetid() {
@@ -44,46 +44,37 @@ public class Pet {
         this.petid = petid;
     }
 
-    public String getPetname() {
-        return petname;
+    public String getP_name() {
+        return p_name;
     }
 
-    public void setPetname(String petname) {
-        this.petname = petname;
+    public void setP_name(String p_name) {
+        this.p_name = p_name;
     }
 
-    public String getPetDOB() {
-        return petDOB;
+    public Calendar getP_dob() {
+        return p_dob;
     }
 
-    public void setPetDOB(String petDOB) {
-        this.petDOB = petDOB;
+    public void setP_dob(Calendar p_dob) {
+        this.p_dob = p_dob;
     }
 
-    public String getPetDatePurchased() {
-        return petDatePurchased;
+    public Calendar getP_datePurchased() {
+        return p_datePurchased;
     }
 
-    public void setPetDatePurchased(String petDatePurchased) {
-        this.petDatePurchased = petDatePurchased;
+    public void setP_datePurchased(Calendar p_datePurchased) {
+        this.p_datePurchased = p_datePurchased;
     }
 
-    public int getBreedid() {
-        return breedid;
+    @Override 
+    public String toString() {
+        return String.format("Pet: %n"
+                + "Pet ID: %d%n "
+                + "Name: %s%n"
+                + "DOB: %3$8tb %3$td %3$tY%n"
+                + "Date Purchased: %3$8tb %3$td %3$tY",
+                petid, p_name, p_dob, p_datePurchased);
     }
-
-    public void setBreedid(int breedid) {
-        this.breedid = breedid;
-    }
-
-    public int getOwnid() {
-        return ownid;
-    }
-
-    public void setOwnid(int ownid) {
-        this.ownid = ownid;
-    }
-    
-    
-    
 }

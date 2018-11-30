@@ -216,7 +216,7 @@ public class ShopOperations {
         try {
             String sql = "CREATE TABLE BREED (breedid NUMBER PRIMARY KEY NOT NULL,"
                     + "b_name VARCHAR2(255),"
-                    + "b_exp_years VARCHAR2(255),"
+                    + "b_exp_years NUMBERS,"
                     + "b_size VARCHAR2(255),";
 
             pstmt = conn.prepareStatement(sql);
@@ -247,7 +247,7 @@ public class ShopOperations {
                     + "food_name VARCHAR2(50),"
                     + "food_price NUMBER,"
                     + "food_servings NUMBER,"
-                    + "food_type VARCHAR2(3))";
+                    + "food_type VARCHAR2(10))";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -435,5 +435,16 @@ public class ShopOperations {
                     + "Food table" + ex.getMessage());
         }
     }
+    
+        public void closeDB() {
+        try {
+            pstmt.close();
+            conn.close();
+            System.out.println("Connection closed");
+        } catch (SQLException ex) {
+            System.out.println("Could not close connection " + ex.getMessage());
+        }
+        }
+    
 
 }
