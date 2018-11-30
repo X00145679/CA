@@ -15,38 +15,38 @@ public class Test {
         
         ShopOperations so = new ShopOperations();
         
-        so.openDB();
-        so.dropPetSequence();
-        so.dropBreedSequence();
-        so.dropFoodSequence();
-        so.dropOwnerSequence();
-        
-        so.createPetSequence();
-        so.createBreedSequence();
-        so.createFoodSequence();
-        so.createOwnerSequence();
-        
-        so.dropPetTable();
-        so.dropBreedTable();
-        so.dropFoodTable();
-        so.dropOwnerTable();
-        so.dropPetFoodTable();
-        
-        so.createBreedTable();
-        so.createFoodTable();
-        so.createOwnerTable();
-        so.createPetTable();
-        so.createPetFoodTable();
-        
-        so.fillBreedTable();
-        so.fillFoodTable();
-        so.fillOwnerTable();
-        so.fillPetTable();
+//        so.openDB();
+//        so.dropPetSequence();
+//        so.dropBreedSequence();
+//        so.dropFoodSequence();
+//        so.dropOwnerSequence();
+//        
+//
+//        so.createBreedSequence();
+//        so.createFoodSequence();
+//        so.createOwnerSequence();
+//        
+//        so.dropPetTable();
+//        so.dropBreedTable();
+//        so.dropFoodTable();
+//        so.dropOwnerTable();
+//        so.dropPetFoodTable();
+//        
+//        so.createBreedTable();
+//        so.createFoodTable();
+//        so.createOwnerTable();
+//        so.createPetTable();
+//        so.createPetFoodTable();
+//        
+//        so.fillBreedTable();
+//        so.fillFoodTable();
+//        so.fillOwnerTable();
+//        so.fillPetTable();
         
         PersistanceOperations po = new PersistanceOperations();
         
-        while (true) {
-            System.out.println("Please press 1 to quit");
+        
+            System.out.println("Please press 1 to add new owner");
             System.out.println("Please press 2 to Update");
             System.out.println("Please press 3 to delete");
             System.out.println("Please press 4 to Query");
@@ -56,12 +56,19 @@ public class Test {
             
             switch (choice) {
                 case 1:
-                    so.closeDB();
-                    System.exit(0);
+                    System.out.println("Please enter the name of the owner "
+                            + "you wish to add");
+                    String name = in.nextLine();
+                    System.out.println("Please enter the address of the owner "
+                            + "you wish to add");
+                    String address = in.nextLine();
+                    System.out.println("Please enter the phone number of the owner "
+                            + "you wish to add");
+                    String pNum = in.nextLine();
                     break;
                 default:
                     System.out.println("Invalid Option entered");
             }
-        }
+        
     }
 }
