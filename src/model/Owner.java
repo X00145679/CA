@@ -17,7 +17,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "OWNER")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 @SequenceGenerator(name = "ownid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")

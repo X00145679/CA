@@ -14,8 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "FOOD")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type")
+
 
 @SequenceGenerator(name = "foodid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")

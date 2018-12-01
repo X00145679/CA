@@ -10,8 +10,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "BREED")
-@Inheritance(strategy = InheritanceType.JOINED)
-
 
 @SequenceGenerator(name = "breedid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
@@ -25,6 +23,8 @@ public class Breed {
     private String b_name,b_size;
     @Temporal(TemporalType.DATE)
     private int b_exp_years;
+    
+   
 
     public Breed(String b_name, String b_size, int b_exp_years) {
         this.b_name = b_name;

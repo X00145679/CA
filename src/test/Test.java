@@ -3,7 +3,7 @@ package test;
 import db.ShopOperations;
 import javax.persistence.*;
 import java.util.Scanner;
-import db.PersistanceOperations;
+import db.PersistenceOperations;
 /**
  *
  * @author David Bird
@@ -43,13 +43,11 @@ public class Test {
         so.fillOwnerTable();
         so.fillPetTable();
         
-//        PersistanceOperations po = new PersistanceOperations();
+        PersistenceOperations po = new PersistenceOperations();
         
         while (true) {
             System.out.println("Please press 1 to add new owner");
             System.out.println("Please press 2 to exit");
-            System.out.println("Please press 3 to delete");
-            System.out.println("Please press 4 to Query");
             
             int choice = in.nextInt();
             in.nextLine();
