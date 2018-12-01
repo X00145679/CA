@@ -14,10 +14,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "FOOD")
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 @SequenceGenerator(name = "foodid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
+
 
 public class Food {
      
@@ -39,6 +40,10 @@ public class Food {
         this.price = price;
         this.servings = servings;
         this.type = type;
+    }
+    
+    public void remove() {
+        
     }
 
     public int getFoodid() {

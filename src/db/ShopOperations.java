@@ -21,9 +21,9 @@ public class ShopOperations {
             OracleDataSource ods = new OracleDataSource();
 
             // Tallaght
-             ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
-             ods.setUser("x00148542");
-             ods.setPassword("db21Feb99");
+            ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
+            ods.setUser("x00148542");
+            ods.setPassword("db21Feb99");
             // Home Oracle XE
 //            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
 //            ods.setUser("hr");
@@ -188,7 +188,7 @@ public class ShopOperations {
             String sql = "CREATE TABLE OWNER (ownid NUMBER PRIMARY KEY NOT NULL,"
                     + "o_name VARCHAR2(255),"
                     + "o_address VARCHAR2(255),"
-                    + "o_pnum VARCHAR2(255))";
+                    + "o_pNum VARCHAR2(255))";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -368,7 +368,7 @@ public class ShopOperations {
             pstmt.setString(2, "133 Lane rd");
             pstmt.setString(3, "0843678893");
             pstmt.executeUpdate();
-            
+
             System.out.println("Owner table filled");
 
         } catch (SQLException ex) {
@@ -402,7 +402,7 @@ public class ShopOperations {
             pstmt.setInt(2, 14);
             pstmt.setString(3, "Small");
             pstmt.executeUpdate();
-            
+
             System.out.println("Breed Table filled");
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
@@ -439,7 +439,7 @@ public class ShopOperations {
             pstmt.setInt(3, 24);
             pstmt.setString(4, "Wet");
             pstmt.executeUpdate();
-            
+
             System.out.println("Food Table filled");
 
         } catch (SQLException ex) {
@@ -447,8 +447,8 @@ public class ShopOperations {
                     + "Food table" + ex.getMessage());
         }
     }
-    
-        public void closeDB() {
+
+    public void closeDB() {
         try {
             pstmt.close();
             conn.close();
@@ -456,7 +456,6 @@ public class ShopOperations {
         } catch (SQLException ex) {
             System.out.println("Could not close connection " + ex.getMessage());
         }
-        }
-    
+    }
 
 }
