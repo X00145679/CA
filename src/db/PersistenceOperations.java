@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package db;
 
 import java.util.List;
 import javax.persistence.*;
+import model.Breed;
 import model.Food;
 import model.Owner;
 import model.Pet;
@@ -54,9 +50,32 @@ public class PersistenceOperations {
     }
 
     public void showBreeds() {
+       em.getTransaction().begin();
+
+        TypedQuery<Breed> query
+                = em.createQuery("SELECT b FROM Breed b ORDER BY b.breedid",
+                        Breed.class);
+        List<Breed> results = query.getResultList();
+
+        for (Breed b : results) {
+            System.out.println(b);
+        }
+        em.getTransaction().commit(); 
+        
     }
 
     public void showFood() {
+        em.getTransaction().begin();
+
+        TypedQuery<Food> query
+                = em.createQuery("SELECT f FROM Food f ORDER BY f.foodid",
+                        Food.class);
+        List<Food> results = query.getResultList();
+
+        for (Food f : results) {
+            System.out.println(f);
+        }
+        em.getTransaction().commit();
     }
 
     public void addOwner(String name, String address, String pNum) {
