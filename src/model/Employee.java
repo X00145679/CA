@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 /**
  *
@@ -15,12 +17,14 @@ import javax.persistence.*;
 
 
 public class Employee {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empid_seq")
     private String e_name, e_pNum;
     private double e_payRate;
     private int empid, e_hours;
+    
+    @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
+    private List<Pet> plist = new ArrayList<>();
 
     public Employee() {
     }
@@ -70,6 +74,11 @@ public class Employee {
 
     public void setE_hours(int e_hours) {
         this.e_hours = e_hours;
+    }
+    
+    public void addPet(Pet p){
+        plist.add(p);
+        p.setEmp(this);
     }
 
 

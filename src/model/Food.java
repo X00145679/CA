@@ -14,7 +14,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "FOOD")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 @SequenceGenerator(name = "foodid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
@@ -29,7 +28,10 @@ public class Food {
     private double price;
     private int servings;
     private String type;
-    
+
+    @ManyToMany(mappedBy = "flist", cascade = CascadeType.PERSIST)
+    private List<Pet> plist = new ArrayList<>();
+            
     public Food() {
         
     }
@@ -94,7 +96,11 @@ public class Food {
         
         return s;
     }
-    
-    
+    public void printFood(){
+        System.out.println("Pets that eat this food " + name);
+        for (int i = 0; i < plist.size(); i++) {
+            System.out.println(plist.get(i));
+        }
+    }
     
 }

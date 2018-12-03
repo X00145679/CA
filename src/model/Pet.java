@@ -25,6 +25,20 @@ public class Pet {
     private Calendar p_dob;
     private double p_price;
 
+    @ManyToOne()
+    @JoinColumn(name="EMPID")
+    private Employee emp;
+
+    @ManyToOne()
+    @JoinColumn(name="BRREDID")
+    private Breed breed;
+    
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "PETFOOD",
+            joinColumns = @JoinColumn(name = "PETID"),
+            inverseJoinColumns = @JoinColumn(name = "FOODID"))
+    private List<Food> flist = new ArrayList<>();
+    
     
     
     public Pet() {
@@ -66,6 +80,14 @@ public class Pet {
 
     public void setP_price(double p_price) {
         this.p_price = p_price;
+    }
+    
+    public void setEmp(Employee e){
+        this.emp = e;
+    }
+    
+    public void setBreed(Breed b) {
+        this.breed = b;
     }
 
   
