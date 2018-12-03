@@ -3,8 +3,8 @@ package db;
 import java.util.List;
 import javax.persistence.*;
 import model.Breed;
+import model.Employee;
 import model.Food;
-import model.Owner;
 import model.Pet;
 
 /**
@@ -35,19 +35,6 @@ public class PersistenceOperations {
         em.getTransaction().commit();
     }
 
-    public void showOwners() {
-        em.getTransaction().begin();
-
-        TypedQuery<Owner> query
-                = em.createQuery("SELECT o FROM Owner o ORDER BY o.ownid",
-                        Owner.class);
-        List<Owner> results = query.getResultList();
-
-        for (Owner o : results) {
-            System.out.println(o);
-        }
-        em.getTransaction().commit();
-    }
 
     public void showBreeds() {
        em.getTransaction().begin();
@@ -78,19 +65,42 @@ public class PersistenceOperations {
         em.getTransaction().commit();
     }
 
-    public void addOwner(String name, String address, String pNum) {
+    public void showEmployees() {
         em.getTransaction().begin();
-        Owner o = new Owner(name, address, pNum);
-        em.persist(o);
+
+        TypedQuery<Employee> query
+                = em.createQuery("SELECT e FROM Employee e ORDER BY e.empid",
+                        Employee.class);
+        List<Employee> results = query.getResultList();
+
+        for (Employee o : results) {
+            System.out.println(o);
+        }
+        em.getTransaction().commit();
+    }
+
+    //Add Methods
+    public void addEmployee(String name, String pNum, double payRate, int hours) {
+        em.getTransaction().begin();
+        Employee e = new Employee(name, pNum, payRate, hours);
+        em.persist(e);
         em.getTransaction().commit();
     }
     
-//    public void deleteFood(int foodid){
-//        Food f = em.find(Food.class, f);
-//        em.getTransaction().begin();
-//        
-//        em.remove(f);
-//        f.remove();
-//        em.getTransaction().commit();
-//    }
+    public void addPet(){
+    };
+    
+    public void addFood(){
+    };
+    
+    //Remove Methods
+    public void removePet() {        
+    }
+    
+    public void removeEmployee() {
+    }
+    
+    //Update Methods
+    public void updatePet(){}
+    
 }

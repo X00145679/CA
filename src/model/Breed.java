@@ -70,11 +70,10 @@ public class Breed {
 
     @Override
     public String toString() {
-            return String.format("Breed: %n"
-                + "Breed ID: %d%n "
-                + "Name: %s%n"
-                + "Size: %s%n"
-                + "Life Expectancy: %d%n",
+            return String.format(" Breed Id: %1$-10d"
+                + "Name: %2$-10s"
+                + "Size: %3$-10s"
+                + "Life Expectancy: %1$-10d",
                 breedid, b_name, b_size, b_exp_years);
     }
     

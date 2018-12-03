@@ -42,9 +42,6 @@ public class Food {
         this.type = type;
     }
     
-    public void remove() {
-        
-    }
 
     public int getFoodid() {
         return foodid;
@@ -88,12 +85,14 @@ public class Food {
     
     @Override 
     public String toString() {
-        return String.format("Food: %d%N "
-                + "Name: %s%n"
-                + "Price: %.2f%n"
-                + "Servings: %d%n"
-                + "Type: %s",
+        String s = String.format(" Food Id: %1$-10s "
+                + "Name: %2$-10s"
+                + "Price: %3$-10.2f"
+                + "Servings: %4$-10d"
+                + "Type: %5$-10s",
                 foodid, name, price, servings, type);
+        
+        return s;
     }
     
     

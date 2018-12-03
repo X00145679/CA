@@ -21,14 +21,13 @@ public class ShopOperations {
             OracleDataSource ods = new OracleDataSource();
 
             // Tallaght
-            //ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
+            ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
             ods.setUser("x00148542");
             ods.setPassword("db21Feb99");
             // Home Oracle XE
-            //ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
-            //ods.setUser("hr");
-            //ods.setPassword("passhr");
-           
+//            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
+//            ods.setUser("hr");
+//            ods.setPassword("passhr");
 
             conn = ods.getConnection();
             System.out.println("connected.");
@@ -87,27 +86,27 @@ public class ShopOperations {
         }
     }
 
-    //Owner Sequence
-    public void dropOwnerSequence() {
+    //Employee Sequence
+    public void dropEmployeeSequence() {
         try {
-            String s2 = "drop sequence ownid_seq";
+            String s2 = "drop sequence empid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
-            System.out.println("Owner Sequence dropped");
+            System.out.println("Employee Sequence dropped");
         } catch (SQLException ex) {
 
         }
     }
 
-    public void createOwnerSequence() {
+    public void createEmployeeSequence() {
         // Creating a sequence    
         try {
-            String createseq1 = "create sequence ownid_seq increment by 1 start with 1";
+            String createseq1 = "create sequence empid_seq increment by 1 start with 1";
             pstmt = conn.prepareStatement(createseq1);
             pstmt.executeUpdate();
-            System.out.println("Owner Sequence created");
+            System.out.println("Employee Sequence created");
         } catch (SQLException ex) {
-            System.out.print("Problem with Owner Sequence " + ex.getMessage());
+            System.out.print("Problem with Employee Sequence " + ex.getMessage());
         }
     }
 
@@ -155,11 +154,11 @@ public class ShopOperations {
             String sql = "CREATE TABLE PET (petid NUMBER PRIMARY KEY NOT NULL,"
                     + "p_name VARCHAR2(255),"
                     + "p_DOB DATE,"
-                    + "p_DatePurchased DATE,"
+                    + "p_price NUMBER,"
                     + "breedid NUMBER,"
-                    + "ownid NUMBER,"
+                    + "empid NUMBER,"
                     + "FOREIGN KEY (breedid) REFERENCES BREED (breedid) ON DELETE CASCADE,"
-                    + "FOREIGN KEY (ownid) REFERENCES OWNER (ownid) ON DELETE CASCADE)";
+                    + "FOREIGN KEY (empid) REFERENCES OWNER (empid) ON DELETE CASCADE)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -171,32 +170,33 @@ public class ShopOperations {
     }
 
     //Owner Table
-    public void dropOwnerTable() {
-        System.out.println("Checking for existence of Owner table");
+    public void dropEmployeeTable() {
+        System.out.println("Checking for existence of Employee table");
         try {
-            String s1 = "DROP TABLE OWNER CASCADE CONSTRAINTS";
+            String s1 = "DROP TABLE EMPLOYEE CASCADE CONSTRAINTS";
             pstmt = conn.prepareStatement(s1);
             pstmt.executeUpdate();
-            System.out.println("Owner  table dropped");
+            System.out.println("Employee table dropped");
         } catch (SQLException ex) {
 
         }
     }
 
-    public void createOwnerTable() {
+    public void createEmployeeTable() {
         // Create a Table           
         try {
-            String sql = "CREATE TABLE OWNER (ownid NUMBER PRIMARY KEY NOT NULL,"
-                    + "o_name VARCHAR2(255),"
-                    + "o_address VARCHAR2(255),"
-                    + "o_pNum VARCHAR2(255))";
+            String sql = "CREATE TABLE EMPLOYEE (empid NUMBER PRIMARY KEY NOT NULL,"
+                    + "e_name VARCHAR2(255),"
+                    + "e_pNum VARCHAR2(255),"
+                    + "e_payRate NUMBER,"
+                    + "e_hours NUMBER)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
-            System.out.println("TABLE OWNER created");
+            System.out.println("TABLE EMPLOYEE created");
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
-                    + "Owner table" + ex.getMessage());
+                    + "EMPLOYEE table" + ex.getMessage());
         }
     }
 
@@ -299,35 +299,35 @@ public class ShopOperations {
 
             pstmt.setString(1, "Bob");
             pstmt.setDate(2, Date.valueOf("2016-01-31"));
-            pstmt.setDate(3, Date.valueOf("2018-02-03"));
+            pstmt.setDouble(3, 120);
             pstmt.setInt(4, 1);
             pstmt.setInt(5, 1);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Doge");
             pstmt.setDate(2, Date.valueOf("2017-03-20"));
-            pstmt.setDate(3, Date.valueOf("2018-02-07"));
+            pstmt.setDouble(3, 140);
             pstmt.setInt(4, 2);
             pstmt.setInt(5, 2);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Rocky");
             pstmt.setDate(2, Date.valueOf("2017-05-23"));
-            pstmt.setDate(3, Date.valueOf("2018-05-24"));
+            pstmt.setDouble(3, 80.50);
             pstmt.setInt(4, 3);
             pstmt.setInt(5, 3);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Aaron");
             pstmt.setDate(2, Date.valueOf("2018-01-31"));
-            pstmt.setDate(3, Date.valueOf("2018-04-03"));
+            pstmt.setDouble(3, 45.99);
             pstmt.setInt(4, 4);
             pstmt.setInt(5, 4);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Rex");
             pstmt.setDate(2, Date.valueOf("2018-01-21"));
-            pstmt.setDate(3, Date.valueOf("2018-04-05"));
+            pstmt.setDouble(3, 130);
             pstmt.setInt(4, 4);
             pstmt.setInt(5, 4);
             pstmt.executeUpdate();
@@ -340,37 +340,42 @@ public class ShopOperations {
     }
 
     // Fill Owner Table
-    public void fillOwnerTable() {
+    public void fillEmployeeTable() {
         try {
-            String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?,?)";
+            String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, "Dave");
-            pstmt.setString(2, "123 Lane rd");
-            pstmt.setString(3, "0873974053");
+            pstmt.setString(2, "0873974053");
+            pstmt.setDouble(3, 10.50);
+            pstmt.setInt(4, 20);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Matt");
-            pstmt.setString(2, "123 Plaza rd");
-            pstmt.setString(3, "0873544033");
+            pstmt.setString(2, "0873544033");
+            pstmt.setDouble(3, 10.50);
+            pstmt.setInt(4, 15);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Steve");
-            pstmt.setString(2, "13 place rd");
-            pstmt.setString(3, "0833344053");
+            pstmt.setString(2, "0833344053");
+            pstmt.setDouble(3, 8.40);
+            pstmt.setInt(4, 10);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Mike");
-            pstmt.setString(2, "123 Street");
-            pstmt.setString(3, "0853684653");
+            pstmt.setString(2, "0853684653");
+            pstmt.setDouble(3, 12.80);
+            pstmt.setInt(4, 26);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Scott");
-            pstmt.setString(2, "133 Lane rd");
-            pstmt.setString(3, "0843678893");
+            pstmt.setString(2, "0843678893");
+            pstmt.setDouble(3, 12.80);
+            pstmt.setInt(4, 28);
             pstmt.executeUpdate();
 
-            System.out.println("Owner table filled");
+            System.out.println("Employee table filled");
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "

@@ -10,7 +10,6 @@
     </properties>-->
     <class>model.Breed</class>
     <class>model.Food</class>
-    <class>model.Owner</class>
     <class>model.Pet</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//10.10.2.7:1521/global1"/>

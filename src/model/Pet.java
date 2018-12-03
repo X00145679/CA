@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PET")
 
-
 @SequenceGenerator(name = "petid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
+
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "petid_seq")
@@ -23,20 +23,17 @@ public class Pet {
     private String p_name;
     @Temporal(TemporalType.DATE)
     private Calendar p_dob;
-    @Temporal(TemporalType.DATE)
-    private Calendar p_datePurchased;
+    private double p_price;
 
     
     
     public Pet() {
     }
 
-    public Pet(int petid, String p_name, Calendar p_dob, Calendar p_datePurchased) {
-        this.petid = petid;
+    public Pet(String p_name, Calendar p_dob, double p_price) {
         this.p_name = p_name;
         this.p_dob = p_dob;
-        this.p_datePurchased = p_datePurchased;
-
+        this.p_price = p_price;
     }
 
     public int getPetid() {
@@ -63,14 +60,15 @@ public class Pet {
         this.p_dob = p_dob;
     }
 
-    public Calendar getP_datePurchased() {
-        return p_datePurchased;
+    public double getP_price() {
+        return p_price;
     }
 
-    public void setP_datePurchased(Calendar p_datePurchased) {
-        this.p_datePurchased = p_datePurchased;
+    public void setP_price(double p_price) {
+        this.p_price = p_price;
     }
-    
+
+  
     
 
     @Override 
@@ -78,8 +76,8 @@ public class Pet {
                 String s = String.format(" Pet Id: %1$-10d"
                 + "Name: %2$-10s "
                 + "DOB: %3$tb %3$td %3$-10tY"
-                + "Date Purchased: %4$tb %4$td %4$-10tY",
-                petid, p_name, p_dob, p_datePurchased);
+                + "Price: %4$-10.2f",
+                petid, p_name, p_dob, p_price);
         
         return s;
     }

@@ -1,0 +1,89 @@
+package model;
+
+import javax.persistence.*;
+/**
+ *
+ * @author David
+ */
+
+
+@Entity
+@Table(name = "EMPLOYEE")
+
+@SequenceGenerator(name = "empid_seq", initialValue = 1, allocationSize = 1)
+@SuppressWarnings("SerializableClass")
+
+
+public class Employee {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empid_seq")
+    private String e_name, e_pNum;
+    private double e_payRate;
+    private int empid, e_hours;
+
+    public Employee() {
+    }
+
+    public Employee(String e_name, String e_pNum, double e_payRate, int e_hours) {
+        this.e_name = e_name;
+        this.e_pNum = e_pNum;
+        this.e_payRate = e_payRate;
+        this.e_hours = e_hours;
+    }
+
+    public String getE_name() {
+        return e_name;
+    }
+
+    public void setE_name(String e_name) {
+        this.e_name = e_name;
+    }
+
+    public String getE_pNum() {
+        return e_pNum;
+    }
+
+    public void setE_pNum(String e_pNum) {
+        this.e_pNum = e_pNum;
+    }
+
+    public double getE_payRate() {
+        return e_payRate;
+    }
+
+    public void setE_payRate(double e_payRate) {
+        this.e_payRate = e_payRate;
+    }
+
+    public int getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(int empid) {
+        this.empid = empid;
+    }
+
+    public int getE_hours() {
+        return e_hours;
+    }
+
+    public void setE_hours(int e_hours) {
+        this.e_hours = e_hours;
+    }
+
+
+   
+    @Override
+    public String toString() {
+        String s = String.format(" Employee Id: %1$-10d"
+                + "Name: %2$-10s "
+                + "Phone Num: %4$-10s"
+                + "Pay Rate: %3$-10.2f"
+                + "Hours: %3$-10d",
+                empid, e_name, e_pNum, e_payRate, e_hours);
+        
+        return s;
+    }
+
+}
