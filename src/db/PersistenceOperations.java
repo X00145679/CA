@@ -35,9 +35,8 @@ public class PersistenceOperations {
         em.getTransaction().commit();
     }
 
-
     public void showBreeds() {
-       em.getTransaction().begin();
+        em.getTransaction().begin();
 
         TypedQuery<Breed> query
                 = em.createQuery("SELECT b FROM Breed b ORDER BY b.breedid",
@@ -47,8 +46,8 @@ public class PersistenceOperations {
         for (Breed b : results) {
             System.out.println(b);
         }
-        em.getTransaction().commit(); 
-        
+        em.getTransaction().commit();
+
     }
 
     public void showFood() {
@@ -86,21 +85,25 @@ public class PersistenceOperations {
         em.persist(e);
         em.getTransaction().commit();
     }
-    
-    public void addPet(){
-    };
-    
-    public void addFood(){
-    };
-    
-    //Remove Methods
-    public void removePet() {        
+
+    public void addPet() {
     }
-    
+
+    public void addFood() {
+    }
+
+    //Remove Methods
+    public void removePet() {
+    }
+
     public void removeEmployee() {
     }
-    
+
     //Update Methods
-    public void updatePet(){}
-    
+    public void updatePet() {
+    }
+
+    public void updateEmployee() {
+    }
+
 }

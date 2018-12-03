@@ -56,6 +56,18 @@ public class Test {
             //Add Methods
             System.out.println("Please press 5 to add a new Employee");
             System.out.println("Please press 6 to add a new Pet");
+            System.out.println("Please prees 7 to add new Food");
+            
+            //Remove Methods
+            System.out.println("Please press 8 to remove a Pet");
+            System.out.println("Please press 9 to remove an Employee");
+            
+            //Update
+            System.out.println("Please press 10 to update a Pet");
+            System.out.println("Please press 11 to update an Employee");
+            
+            //Query
+           
 
             int choice = in.nextInt();
             in.nextLine();

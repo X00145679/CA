@@ -44,7 +44,7 @@ public class ShopOperations {
             String s2 = "drop sequence petid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
-            System.out.println("Pet Sequence dropped");
+            System.out.println("PET Sequence dropped");
         } catch (SQLException ex) {
 
         }
@@ -56,9 +56,9 @@ public class ShopOperations {
             String createseq1 = "create sequence petid_seq increment by 1 start with 1";
             pstmt = conn.prepareStatement(createseq1);
             pstmt.executeUpdate();
-            System.out.println("Pet Sequence created");
+            System.out.println("PET Sequence created");
         } catch (SQLException ex) {
-            System.out.print("Problem with Pet Sequence " + ex.getMessage());
+            System.out.print("Problem with PET Sequence " + ex.getMessage());
         }
     }
 
@@ -68,7 +68,7 @@ public class ShopOperations {
             String s2 = "drop sequence breedid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
-            System.out.println("Breed Sequence dropped");
+            System.out.println("BREED Sequence dropped");
         } catch (SQLException ex) {
 
         }
@@ -80,9 +80,9 @@ public class ShopOperations {
             String createseq1 = "create sequence breedid_seq increment by 1 start with 1";
             pstmt = conn.prepareStatement(createseq1);
             pstmt.executeUpdate();
-            System.out.println("Breed Sequence created");
+            System.out.println("BREED Sequence created");
         } catch (SQLException ex) {
-            System.out.print("Problem with Breed Sequence " + ex.getMessage());
+            System.out.print("Problem with BREED Sequence " + ex.getMessage());
         }
     }
 
@@ -92,7 +92,7 @@ public class ShopOperations {
             String s2 = "drop sequence empid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
-            System.out.println("Employee Sequence dropped");
+            System.out.println("EMPLOYEE Sequence dropped");
         } catch (SQLException ex) {
 
         }
@@ -104,9 +104,9 @@ public class ShopOperations {
             String createseq1 = "create sequence empid_seq increment by 1 start with 1";
             pstmt = conn.prepareStatement(createseq1);
             pstmt.executeUpdate();
-            System.out.println("Employee Sequence created");
+            System.out.println("EMPLOYEE Sequence created");
         } catch (SQLException ex) {
-            System.out.print("Problem with Employee Sequence " + ex.getMessage());
+            System.out.print("Problem with EEMPLOYEE Sequence " + ex.getMessage());
         }
     }
 
@@ -116,7 +116,7 @@ public class ShopOperations {
             String s2 = "drop sequence foodid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
-            System.out.println("Food Sequence dropped");
+            System.out.println("FOOD Sequence dropped");
         } catch (SQLException ex) {
 
         }
@@ -128,9 +128,9 @@ public class ShopOperations {
             String createseq1 = "create sequence foodid_seq increment by 1 start with 1";
             pstmt = conn.prepareStatement(createseq1);
             pstmt.executeUpdate();
-            System.out.println("Food Sequence created");
+            System.out.println("FOOD Sequence created");
         } catch (SQLException ex) {
-            System.out.print("Problem with Food Sequence " + ex.getMessage());
+            System.out.print("Problem with FOOD Sequence " + ex.getMessage());
         }
     }
 
@@ -176,7 +176,7 @@ public class ShopOperations {
             String s1 = "DROP TABLE EMPLOYEE CASCADE CONSTRAINTS";
             pstmt = conn.prepareStatement(s1);
             pstmt.executeUpdate();
-            System.out.println("Employee table dropped");
+            System.out.println("EMPLOYEE table dropped");
         } catch (SQLException ex) {
 
         }
@@ -332,6 +332,20 @@ public class ShopOperations {
             pstmt.setInt(5, 4);
             pstmt.executeUpdate();
 
+            pstmt.setString(1, "Ron");
+            pstmt.setDate(2, Date.valueOf("2015-03-21"));
+            pstmt.setDouble(3, 40);
+            pstmt.setInt(4, 4);
+            pstmt.setInt(5, 5);
+            pstmt.executeUpdate();
+
+            pstmt.setString(1, "Dave");
+            pstmt.setDate(2, Date.valueOf("2015-07-11"));
+            pstmt.setDouble(3, 0);
+            pstmt.setInt(4, 1);
+            pstmt.setInt(5, 1);
+            pstmt.executeUpdate();
+
             System.out.println("Pet Table filled");
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
@@ -451,6 +465,49 @@ public class ShopOperations {
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
                     + "Food table" + ex.getMessage());
+        }
+    }
+    
+    public void fillPETFOODTable() {
+        try {
+            String sql = "INSERT INTO PETFOOD VALUES(?,?)";
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setInt(1,1);
+            pstmt.setInt(2,1);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,1);
+            pstmt.setInt(2,4);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,2);
+            pstmt.setInt(2,2);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,2);
+            pstmt.setInt(2,4);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,3);
+            pstmt.setInt(2,1);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,4);
+            pstmt.setInt(2,1);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,4);
+            pstmt.setInt(2,4);
+            pstmt.executeUpdate();
+            
+            pstmt.setInt(1,5);
+            pstmt.setInt(2,4);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception filling "
+                    + "PETFOOD table" + ex.getMessage());
         }
     }
 
