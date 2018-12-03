@@ -49,8 +49,8 @@ public class Test {
         while (true) {
             //Show Methods
             System.out.println("Please press 1 to show all pets");
-            System.out.println("Please press 2 to show all owners");
-            System.out.println("Please press 3 to show all breed");
+            System.out.println("Please press 2 to show all Employees");
+            System.out.println("Please press 3 to show all breeds");
             System.out.println("Please press 4 to show all food");
             
             //Add Methods
@@ -102,9 +102,24 @@ public class Test {
                     po.addEmployee(name, pNum, payRate, hours);
                     break;
                 case 6:
-                    po.addPet();
+                    //po.addPet();
                     break;
                 case 7:
+                    
+                    break;
+                case 8:
+                    
+                    break;
+                case 9:
+                    
+                    break;
+                case 10:
+                    
+                    break;
+                case 11:
+                    
+                    break;
+                case 12:
                     System.exit(0);
                 default:
                     System.out.println("Invalid Option entered");

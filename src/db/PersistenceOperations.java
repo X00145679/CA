@@ -1,5 +1,6 @@
 package db;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.*;
 import model.Breed;
@@ -86,17 +87,33 @@ public class PersistenceOperations {
         em.getTransaction().commit();
     }
 
-    public void addPet() {
+    public void addPet(String p_name, Calendar p_dob, double p_price) {
+        em.getTransaction().begin();
+        Pet p = new Pet(p_name,p_dob,p_price);
+        em.persist(p);
+        em.getTransaction().commit();
     }
 
-    public void addFood() {
+    public void addFood(String name, double price, int servings, String type) {
+        em.getTransaction().begin();
+        Food f = new Food(name,price, servings, type);
+        em.persist(f);
+        em.getTransaction().commit();
     }
 
     //Remove Methods
-    public void removePet() {
+    public void removePet(int eid) {
+        Pet p = em.find(Pet.class, eid);
+        em.getTransaction().begin();
+        em.remove(p);
+        em.getTransaction().commit();
     }
 
-    public void removeEmployee() {
+    public void removeEmployee(int eid) {
+        Employee e = em.find(Employee.class, eid);
+        em.getTransaction().begin();
+        em.remove(e);
+        em.getTransaction().commit();
     }
 
     //Update Methods

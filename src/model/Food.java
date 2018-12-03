@@ -34,8 +34,8 @@ public class Food {
         
     }
 
-    public Food(int foodid, String name, double price, int servings, String type) {
-        this.foodid = foodid;
+    public Food(String name, double price, int servings, String type) {
+        
         this.name = name;
         this.price = price;
         this.servings = servings;
