@@ -83,6 +83,10 @@ public class PersistenceOperations {
     public void addEmployee(String name, String pNum, double payRate, int hours) {
         em.getTransaction().begin();
         Employee e = new Employee(name, pNum, payRate, hours);
+        e.setE_name(name);
+        e.setE_hours(hours);
+        e.setE_pNum(pNum);
+        e.setE_payRate(payRate);
         em.persist(e);
         em.getTransaction().commit();
     }
@@ -123,4 +127,9 @@ public class PersistenceOperations {
     public void updateEmployee() {
     }
 
+    //Close
+    public void close(){
+        em.close();
+        emf.close();
+    }
 }

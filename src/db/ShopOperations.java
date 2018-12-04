@@ -321,26 +321,26 @@ public class ShopOperations {
             pstmt.setInt(5, 4);
             pstmt.executeUpdate();
 
-//            pstmt.setString(1, "Rex");
-//            pstmt.setDate(2, Date.valueOf("2018-01-21"));
-//            pstmt.setDouble(3, 130.0);
-//            pstmt.setInt(4, 4);
-//            pstmt.setInt(5, 4);
-//            pstmt.executeUpdate();
-//
-//            pstmt.setString(1, "Ron");
-//            pstmt.setDate(2, Date.valueOf("2015-03-21"));
-//            pstmt.setDouble(3, 40.0);
-//            pstmt.setInt(4, 4);
-//            pstmt.setInt(5, 4);
-//            pstmt.executeUpdate();
-//
-//            pstmt.setString(1, "Dave");
-//            pstmt.setDate(2, Date.valueOf("2015-07-11"));
-//            pstmt.setDouble(3, 12.2);
-//            pstmt.setInt(4, 1);
-//            pstmt.setInt(5, 1);
-//            pstmt.executeUpdate();
+            pstmt.setString(1, "Rex");
+            pstmt.setDate(2, Date.valueOf("2018-01-21"));
+            pstmt.setDouble(3, 130.0);
+            pstmt.setInt(4, 4);
+            pstmt.setInt(5, 4);
+            pstmt.executeUpdate();
+
+            pstmt.setString(1, "Ron");
+            pstmt.setDate(2, Date.valueOf("2015-03-21"));
+            pstmt.setDouble(3, 40.0);
+            pstmt.setInt(4, 4);
+            pstmt.setInt(5, 4);
+            pstmt.executeUpdate();
+
+            pstmt.setString(1, "Dave");
+            pstmt.setDate(2, Date.valueOf("2015-07-11"));
+            pstmt.setDouble(3, 12.2);
+            pstmt.setInt(4, 1);
+            pstmt.setInt(5, 1);
+            pstmt.executeUpdate();
 
             System.out.println("Pet Table filled");
         } catch (SQLException ex) {
