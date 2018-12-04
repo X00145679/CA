@@ -19,7 +19,8 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empid_seq")
-    private String e_name, e_pNum;
+    private String e_name;
+    private String e_pNum;
     private double e_payRate;
     private int empid, e_hours;
     
@@ -86,10 +87,10 @@ public class Employee {
     @Override
     public String toString() {
         String s = String.format(" Employee Id: %1$-10d"
-                + "Name: %2$-10s "
-                + "Phone Num: %4$-10s"
-                + "Pay Rate: %3$-10.2f"
-                + "Hours: %3$-10d",
+                + "Name: %2$-10s"
+                + "Phone Num: %3$-15s"
+                + "Pay Rate: %4$-10.2f"
+                + "Hours: %5$-10d",
                 empid, e_name, e_pNum, e_payRate, e_hours);
         
         return s;

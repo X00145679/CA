@@ -153,7 +153,8 @@ public class ShopOperations {
                     + "breedid NUMBER,"
                     + "empid NUMBER,"
                     + "FOREIGN KEY (breedid) REFERENCES BREED (breedid) ON DELETE CASCADE,"
-                    + "FOREIGN KEY (empid) REFERENCES OWNER (empid) ON DELETE CASCADE)";
+                    + "FOREIGN KEY (empid) REFERENCES  EMPLOYEE (empid) ON DELETE CASCADE)";
+    
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -241,10 +242,10 @@ public class ShopOperations {
         // Create a Table           
         try {
             String sql = "CREATE TABLE FOOD (foodid NUMBER PRIMARY KEY NOT NULL,"
-                    + "food_name VARCHAR2(50),"
-                    + "food_price NUMBER,"
-                    + "food_servings NUMBER,"
-                    + "food_type VARCHAR2(10))";
+                    + "f_name VARCHAR2(50),"
+                    + "f_price NUMBER,"
+                    + "f_servings NUMBER,"
+                    + "f_type VARCHAR2(10))";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -293,15 +294,15 @@ public class ShopOperations {
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, "Bob");
-            pstmt.setDate(2, Date.valueOf("2016-01-31"));
-            pstmt.setDouble(3, 120);
+            pstmt.setDate(2, Date.valueOf("2016-01-30"));
+            pstmt.setDouble(3, 120.0);
             pstmt.setInt(4, 1);
             pstmt.setInt(5, 1);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Doge");
             pstmt.setDate(2, Date.valueOf("2017-03-20"));
-            pstmt.setDouble(3, 140);
+            pstmt.setDouble(3, 140.0);
             pstmt.setInt(4, 2);
             pstmt.setInt(5, 2);
             pstmt.executeUpdate();
@@ -314,32 +315,32 @@ public class ShopOperations {
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Aaron");
-            pstmt.setDate(2, Date.valueOf("2018-01-31"));
+            pstmt.setDate(2, Date.valueOf("2018-01-30"));
             pstmt.setDouble(3, 45.99);
             pstmt.setInt(4, 4);
             pstmt.setInt(5, 4);
             pstmt.executeUpdate();
 
-            pstmt.setString(1, "Rex");
-            pstmt.setDate(2, Date.valueOf("2018-01-21"));
-            pstmt.setDouble(3, 130);
-            pstmt.setInt(4, 4);
-            pstmt.setInt(5, 4);
-            pstmt.executeUpdate();
-
-            pstmt.setString(1, "Ron");
-            pstmt.setDate(2, Date.valueOf("2015-03-21"));
-            pstmt.setDouble(3, 40);
-            pstmt.setInt(4, 4);
-            pstmt.setInt(5, 5);
-            pstmt.executeUpdate();
-
-            pstmt.setString(1, "Dave");
-            pstmt.setDate(2, Date.valueOf("2015-07-11"));
-            pstmt.setDouble(3, 0);
-            pstmt.setInt(4, 1);
-            pstmt.setInt(5, 1);
-            pstmt.executeUpdate();
+//            pstmt.setString(1, "Rex");
+//            pstmt.setDate(2, Date.valueOf("2018-01-21"));
+//            pstmt.setDouble(3, 130.0);
+//            pstmt.setInt(4, 4);
+//            pstmt.setInt(5, 4);
+//            pstmt.executeUpdate();
+//
+//            pstmt.setString(1, "Ron");
+//            pstmt.setDate(2, Date.valueOf("2015-03-21"));
+//            pstmt.setDouble(3, 40.0);
+//            pstmt.setInt(4, 4);
+//            pstmt.setInt(5, 4);
+//            pstmt.executeUpdate();
+//
+//            pstmt.setString(1, "Dave");
+//            pstmt.setDate(2, Date.valueOf("2015-07-11"));
+//            pstmt.setDouble(3, 12.2);
+//            pstmt.setInt(4, 1);
+//            pstmt.setInt(5, 1);
+//            pstmt.executeUpdate();
 
             System.out.println("Pet Table filled");
         } catch (SQLException ex) {
@@ -351,7 +352,7 @@ public class ShopOperations {
     // Fill Owner Table
     public void fillEmployeeTable() {
         try {
-            String sql = "INSERT INTO OWNER VALUES(ownid_seq.nextVal,?,?,?,?)";
+            String sql = "INSERT INTO EMPLOYEE VALUES(empid_seq.nextVal,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, "Dave");
@@ -388,7 +389,7 @@ public class ShopOperations {
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
-                    + "MODULE15 table" + ex.getMessage());
+                    + "EMPLOYEE table" + ex.getMessage());
         }
     }
 

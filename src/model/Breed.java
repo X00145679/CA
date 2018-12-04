@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -10,7 +12,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "BREED")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 @SequenceGenerator(name = "breedid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
@@ -23,6 +24,9 @@ public class Breed {
     private int breedid;
     private String b_name,b_size;
     private int b_exp_years;
+    
+    @OneToMany(mappedBy = "breed",cascade = CascadeType.ALL)
+    private List<Pet> plist = new ArrayList<>();
 
     public Breed() {
     }
@@ -71,7 +75,7 @@ public class Breed {
     @Override
     public String toString() {
             return String.format(" Breed Id: %1$-10d"
-                + "Name: %2$-10s"
+                + "Name: %2$-15s"
                 + "Size: %3$-10s"
                 + "Life Expectancy: %1$-10d",
                 breedid, b_name, b_size, b_exp_years);

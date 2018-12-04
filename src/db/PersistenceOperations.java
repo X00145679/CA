@@ -30,8 +30,8 @@ public class PersistenceOperations {
                         Pet.class);
         List<Pet> results = query.getResultList();
 
-        for (Pet o : results) {
-            System.out.println(o);
+        for (Pet p : results) {
+            System.out.println(p);
         }
         em.getTransaction().commit();
     }

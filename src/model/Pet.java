@@ -30,7 +30,7 @@ public class Pet {
     private Employee emp;
 
     @ManyToOne()
-    @JoinColumn(name="BRREDID")
+    @JoinColumn(name="BREEDID")
     private Breed breed;
     
     @ManyToMany(cascade = CascadeType.PERSIST)

@@ -24,26 +24,23 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "foodid_seq")
     private int foodid;
-    private String name;
-    private double price;
-    private int servings;
-    private String type;
+    private String f_name;
+    private double f_price;
+    private int f_servings;
+    private String f_type;
 
     @ManyToMany(mappedBy = "flist", cascade = CascadeType.PERSIST)
     private List<Pet> plist = new ArrayList<>();
-            
+
     public Food() {
-        
     }
 
-    public Food(String name, double price, int servings, String type) {
-        
-        this.name = name;
-        this.price = price;
-        this.servings = servings;
-        this.type = type;
+    public Food(String f_name, double f_price, int f_servings, String f_type) {
+        this.f_name = f_name;
+        this.f_price = f_price;
+        this.f_servings = f_servings;
+        this.f_type = f_type;
     }
-    
 
     public int getFoodid() {
         return foodid;
@@ -53,38 +50,46 @@ public class Food {
         this.foodid = foodid;
     }
 
-    public String getName() {
-        return name;
+    public String getF_name() {
+        return f_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setF_name(String f_name) {
+        this.f_name = f_name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getF_price() {
+        return f_price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setF_price(double f_price) {
+        this.f_price = f_price;
     }
 
-    public int getServings() {
-        return servings;
+    public int getF_servings() {
+        return f_servings;
     }
 
-    public void setServings(int servings) {
-        this.servings = servings;
+    public void setF_servings(int f_servings) {
+        this.f_servings = f_servings;
     }
 
-    public String getType() {
-        return type;
+    public String getF_type() {
+        return f_type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setF_type(String f_type) {
+        this.f_type = f_type;
     }
-    
+
+    public List<Pet> getPlist() {
+        return plist;
+    }
+
+    public void setPlist(List<Pet> plist) {
+        this.plist = plist;
+    }
+
     @Override 
     public String toString() {
         String s = String.format(" Food Id: %1$-10s "
@@ -92,12 +97,12 @@ public class Food {
                 + "Price: %3$-10.2f"
                 + "Servings: %4$-10d"
                 + "Type: %5$-10s",
-                foodid, name, price, servings, type);
+                foodid, f_name, f_price, f_servings, f_type);
         
         return s;
     }
     public void printFood(){
-        System.out.println("Pets that eat this food " + name);
+        System.out.println("Pets that eat this food " + f_name);
         for (int i = 0; i < plist.size(); i++) {
             System.out.println(plist.get(i));
         }
