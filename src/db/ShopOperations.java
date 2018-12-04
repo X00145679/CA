@@ -19,6 +19,7 @@ public class ShopOperations {
             ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
             ods.setUser("x00148542");
             ods.setPassword("db21Feb99");
+            
             // Home Oracle XE
 //            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
 //            ods.setUser("hr");
@@ -39,7 +40,7 @@ public class ShopOperations {
             String s2 = "drop sequence petid_seq";
             pstmt = conn.prepareStatement(s2);
             pstmt.executeUpdate();
-            System.out.println("PET Sequence dropped");
+            System.out.println("PET SEQUENCE dropped");
         } catch (SQLException ex) {
 
         }

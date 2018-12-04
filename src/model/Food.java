@@ -41,6 +41,11 @@ public class Food {
         this.f_servings = f_servings;
         this.f_type = f_type;
     }
+    
+    public void addPet(Pet p){
+        plist.add(p);
+        p.getFlist().add(this);
+    }
 
     public int getFoodid() {
         return foodid;
@@ -101,7 +106,7 @@ public class Food {
         
         return s;
     }
-    public void printFood(){
+    public void printPets(){
         System.out.println("Pets that eat this food " + f_name);
         for (int i = 0; i < plist.size(); i++) {
             System.out.println(plist.get(i));

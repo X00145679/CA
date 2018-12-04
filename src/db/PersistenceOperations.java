@@ -121,10 +121,36 @@ public class PersistenceOperations {
     }
 
     //Update Methods
-    public void updatePet() {
+    public void updatePet(int pid, double price) {
+        Pet p = em.find(Pet.class, pid);
+        p.setP_price(price);
+        em.persist(p);
+        em.getTransaction().commit();
     }
 
-    public void updateEmployee() {
+    public void updateEmployee(int eid, double payRate, int hours) {
+        Employee e = em.find(Employee.class, eid);
+        e.setE_payRate(payRate);
+        e.setE_hours(hours);
+        em.persist(e);
+        em.getTransaction().commit();
+    }
+    
+    public void updateFood(int fid, int servings, double price){
+        Food f = em.find(Food.class, fid);
+        f.setF_servings(servings);
+        f.setF_price(price);
+        em.persist(f);
+        em.getTransaction().commit();
+    }
+    
+    //Query
+    public void addPetFood(int pid, int fid){
+        em.getTransaction().begin();
+        Pet p = em.find(Pet.class, pid);
+        Food f = em.find(Food.class, fid);
+        f.addPet(p);
+        em.getTransaction().commit();
     }
 
     //Close

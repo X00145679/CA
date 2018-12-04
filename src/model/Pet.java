@@ -90,6 +90,16 @@ public class Pet {
         this.breed = b;
     }
 
+    public List<Food> getFlist() {
+        return flist;
+    }
+
+    public void setFlist(List<Food> flist) {
+        this.flist = flist;
+    }
+    
+    
+
   
     
 
@@ -102,5 +112,13 @@ public class Pet {
                 petid, p_name, p_dob, p_price);
         
         return s;
+    }
+    
+    public void printFood(){
+        System.out.println("Modules for: "+p_name);
+        for (int i = 0; i < flist.size(); i++) {
+            System.out.println(flist.get(i));
+            
+        }
     }
 }
