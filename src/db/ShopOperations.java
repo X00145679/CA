@@ -102,7 +102,7 @@ public class ShopOperations {
             pstmt.executeUpdate();
             System.out.println("EMPLOYEE Sequence created");
         } catch (SQLException ex) {
-            System.out.print("Problem with EEMPLOYEE Sequence " + ex.getMessage());
+            System.out.print("Problem with EMPLOYEE Sequence " + ex.getMessage());
         }
     }
 

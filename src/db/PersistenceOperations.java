@@ -106,15 +106,15 @@ public class PersistenceOperations {
     }
 
     //Remove Methods
-    public void removePet(int eid) {
-        Pet p = em.find(Pet.class, eid);
+    public void removePet(int pid) {
+        Pet p = em.find(Pet.class, pid);
         em.getTransaction().begin();
         em.remove(p);
         em.getTransaction().commit();
     }
 
-    public void removeEmployee(int eid) {
-        Employee e = em.find(Employee.class, eid);
+    public void removeEmployee(int empid) {
+        Employee e = em.find(Employee.class, empid);
         em.getTransaction().begin();
         em.remove(e);
         em.getTransaction().commit();
@@ -123,13 +123,16 @@ public class PersistenceOperations {
     //Update Methods
     public void updatePet(int pid, double price) {
         Pet p = em.find(Pet.class, pid);
+        em.getTransaction().begin();
         p.setP_price(price);
         em.persist(p);
         em.getTransaction().commit();
+        System.out.println(" row updated");
     }
 
     public void updateEmployee(int eid, double payRate, int hours) {
         Employee e = em.find(Employee.class, eid);
+        em.getTransaction().begin();
         e.setE_payRate(payRate);
         e.setE_hours(hours);
         em.persist(e);
@@ -138,6 +141,7 @@ public class PersistenceOperations {
     
     public void updateFood(int fid, int servings, double price){
         Food f = em.find(Food.class, fid);
+        em.getTransaction().begin();
         f.setF_servings(servings);
         f.setF_price(price);
         em.persist(f);

@@ -71,7 +71,7 @@ public class Test {
             //Query
            
             //End
-            System.out.println("Please press 12 to EXIT");
+            System.out.println("Please press 13 to EXIT");
 
             int choice = in.nextInt();
             in.nextLine();
@@ -157,12 +157,21 @@ public class Test {
                     po.removeEmployee(id);
                     break;
                 case 10:
-                    
+                    System.out.println("Enter the id of the Pet "
+                            + "you wish to update");
+                    id = in.nextInt();
+                    System.out.println("Enter the nwe price of the Pet "
+                            + "you wish to update");
+                    price = in.nextDouble();
+                    po.updatePet(id, price);
                     break;
                 case 11:
-                    
+  //                  po.updateEmployee(id, payRate, hours);
                     break;
                 case 12:
+  //                  po.updateFood(id, servings, price);
+                    break;
+                case 13:
                     po.close();
                     so.closeDB();
                     System.exit(0);
