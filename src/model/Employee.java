@@ -19,10 +19,11 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empid_seq")
+    private int empid;
     private String e_name;
     private String e_pNum;
     private double e_payRate;
-    private int empid, e_hours;
+    private int e_hours;
     
     @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
     private List<Pet> plist = new ArrayList<>();
