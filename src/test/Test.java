@@ -50,25 +50,28 @@ public class Test {
 
         while (true) {
             //Show Methods
-            System.out.println("\nPlease press 1 to show all pets");
-            System.out.println("Please press 2 to show all Employees");
-            System.out.println("Please press 3 to show all breeds");
-            System.out.println("Please press 4 to show all food");
+            System.out.println("\nPlease press 1 to SHOW all PETS");
+            System.out.println("Please press 2 to SHOW all EMPLOYEES");
+            System.out.println("Please press 3 to SHOW all BREEDS");
+            System.out.println("Please press 4 to SHOW all FOOD");
             
             //Add Methods
-            System.out.println("Please press 5 to add a new Employee");
-            System.out.println("Please press 6 to add a new Pet");
-            System.out.println("Please prees 7 to add new Food");
+            System.out.println("Please press 5 to ADD a new EMPLOYEE");
+            System.out.println("Please press 6 to ADD a new PET");
+            System.out.println("Please prees 7 to ADD new FOOD");
             
             //Remove Methods
-            System.out.println("Please press 8 to remove a Pet");
-            System.out.println("Please press 9 to remove an Employee");
+            System.out.println("Please press 8 to REMOVE a PET");
+            System.out.println("Please press 9 to REMOVE an EMPLOYEE");
             
             //Update
-            System.out.println("Please press 10 to update a Pet");
-            System.out.println("Please press 11 to update an Employee\n");
+            System.out.println("Please press 10 to UPDATE a PET");
+            System.out.println("Please press 11 to UPDATE an EMPLOYEE");
+            System.out.println("Please press 11 to UPDATE a FOOD\n");
             
             //Query
+            
+            
            
             //End
             System.out.println("Please press 13 to EXIT");
