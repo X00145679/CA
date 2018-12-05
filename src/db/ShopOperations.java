@@ -17,8 +17,8 @@ public class ShopOperations {
 
             // Tallaght
             ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
-            ods.setUser("x00148542");
-            ods.setPassword("db21Feb99");
+            ods.setUser("x00145679");
+            ods.setPassword("db31Jan99");
             
             // Home Oracle XE
 //            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");

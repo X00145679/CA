@@ -163,16 +163,37 @@ public class Test {
                     System.out.println("Enter the id of the Pet "
                             + "you wish to update");
                     id = in.nextInt();
-                    System.out.println("Enter the nwe price of the Pet "
+                    System.out.println("Enter the new price of the Pet "
                             + "you wish to update");
                     price = in.nextDouble();
                     po.updatePet(id, price);
                     break;
                 case 11:
-  //                  po.updateEmployee(id, payRate, hours);
+                    System.out.println("Please enter the ID of the Employee "
+                            + "you wish to update");
+                    int ID = in.nextInt();
+                    
+                    System.out.println("Please enter the pay rate of the Employee "
+                            + "you wish to update");
+                    double payRate1 = in.nextDouble();
+                    System.out.println("Please enter the hours of the Employee "
+                            + "you wish to update");
+                    int hours1 = in.nextInt();
+                    po.updateEmployee(ID, payRate1, hours1);
+
                     break;
                 case 12:
-  //                  po.updateFood(id, servings, price);
+                    System.out.println("Please enter the ID of the Food "
+                            + "you wish to update");
+                    ID = in.nextInt();
+                    System.out.println("Please enter the PRICE of the Food "
+                            + "you wish to update");
+                    price = in.nextDouble();
+                    System.out.println("Please enter the SERVINGS of the Food "
+                            + "you wish to update");
+                    servings = in.nextInt();
+                    
+                   po.updateFood(ID, servings, price);
                     break;
                 case 13:
                     po.close();
