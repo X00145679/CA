@@ -32,6 +32,7 @@ public class Food {
     @ManyToMany(mappedBy = "flist", cascade = CascadeType.PERSIST)
     private List<Pet> plist = new ArrayList<>();
 
+    
     public Food() {
     }
 

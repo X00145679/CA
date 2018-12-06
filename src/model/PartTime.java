@@ -44,7 +44,7 @@ public class PartTime extends Employee {
     
     @Override
     public String toString() {
-        return super.toString() + " Shop Employee Hours: " + hours + ", Pay Rate: " + payRate;
+        return super.toString() + " PartTime Employee Hours: " + hours + ", Pay Rate: " + payRate;
     }
     
     

@@ -72,6 +72,20 @@ public class Breed {
         this.b_exp_years = b_exp_years;
     }
 
+    public List<Pet> getPlist() {
+        return plist;
+    }
+
+    public void setPlist(List<Pet> plist) {
+        this.plist = plist;
+    }
+    
+    public void addPet(Pet p){
+        plist.add(p);
+        p.setBreed(this);
+    }
+    
+
     @Override
     public String toString() {
             return String.format(" Breed Id: %1$-10d"

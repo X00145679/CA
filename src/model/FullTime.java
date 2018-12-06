@@ -38,7 +38,7 @@ public class FullTime extends Employee {
 
     @Override
     public String toString() {
-        String s = super.toString() + " Carer Employee Salary: " + salary;
+        String s = super.toString() + " FullTime Employee Salary: " + salary;
 
         return s;
     }

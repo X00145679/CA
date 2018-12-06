@@ -62,6 +62,16 @@ public class Employee {
         this.empid = empid;
     }
 
+    public List<Pet> getPlist() {
+        return plist;
+    }
+
+    public void setPlist(List<Pet> plist) {
+        this.plist = plist;
+    }
+    
+    
+
     public void addPet(Pet p){
         plist.add(p);
         p.setEmp(this);

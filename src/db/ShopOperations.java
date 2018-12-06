@@ -197,7 +197,7 @@ public class ShopOperations {
     }
     
     //EmpCarer Table
-    public void dropFTTable() {
+    public void dropFTtable() {
         System.out.println("Checking for existence of FULLTIME table");
         try {
             String s1 = "DROP TABLE FULLTIME CASCADE CONSTRAINTS";
@@ -220,12 +220,12 @@ public class ShopOperations {
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
-                    + "EMPCARER table" + ex.getMessage());
+                    + "FULLTIME table" + ex.getMessage());
         }
     }
         
-            //EmpCarer Table
-    public void dropPTTable() {
+            //PARTTIME Table
+    public void dropPTtable() {
         System.out.println("Checking for existence of PARTTIME table");
         try {
             String s1 = "DROP TABLE PARTTIME CASCADE CONSTRAINTS";

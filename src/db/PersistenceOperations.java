@@ -81,16 +81,16 @@ public class PersistenceOperations {
         em.getTransaction().commit();
     }
     
-    public void showEmpShop() {
+    public void showPartTime() {
         em.getTransaction().begin();
 
         TypedQuery<PartTime> query
-                = em.createQuery("SELECT es FROM EmpShop es ORDER BY es.empid",
+                = em.createQuery("SELECT pt FROM parttime pt ORDER BY pt.empid",
                         PartTime.class);
         List<PartTime> results = query.getResultList();
 
-        for (PartTime es : results) {
-            System.out.println(es);
+        for (PartTime pt : results) {
+            System.out.println(pt);
         }
         em.getTransaction().commit();
     }
@@ -105,8 +105,8 @@ public class PersistenceOperations {
                         FullTime.class);
         List<FullTime> results = query.getResultList();
 
-        for (FullTime ec : results) {
-            System.out.println(ec);
+        for (FullTime ft : results) {
+            System.out.println(ft);
         }
         em.getTransaction().commit();
     }
@@ -118,32 +118,35 @@ public class PersistenceOperations {
     
 
     //Add Methods
-//    public void addEmployee(String name, String pNum, double payRate, int hours) {
-//        em.getTransaction().begin();
-//        Employee e = new Employee(name, pNum, payRate, hours);
-//        em.persist(e);
-//       em.getTransaction().commit();
-//    }
-    
-    //EmpShop
-    public void addEmpShop(String name, String pNum, double payRate, int hours) {
+    public void addPartTime(String name, String pNum, double payRate, int hours) {
         em.getTransaction().begin();
-        PartTime e = new PartTime(name, pNum, payRate, hours);
-        em.persist(e);
+        PartTime pt = new PartTime(name, pNum, payRate, hours);
+        em.persist(pt);
         em.getTransaction().commit();
     }
     
-    //EmpCarer
-    public void addEmpCarer(String name, String pNum, double salary) {
+
+    public void addFullTime(String name, String pNum, double salary) {
         em.getTransaction().begin();
         FullTime e = new FullTime(name, pNum, salary);
         em.persist(e);
         em.getTransaction().commit();
     }
     
-    public void addPet(String p_name, Calendar p_dob, double p_price) {
+    public void addPet(String p_name, Calendar p_dob, double p_price, int bid, int eid) {
         em.getTransaction().begin();
         Pet p = new Pet(p_name,p_dob,p_price);
+        
+        Employee e = em.find(Employee.class, eid);
+        if(e != null){
+            e.addPet(p);
+        }
+        
+        Breed b = em.find(Breed.class, bid);
+        if(b != null){
+            b.addPet(p);
+        }
+        
         em.persist(p);
         em.getTransaction().commit();
     }
@@ -180,30 +183,22 @@ public class PersistenceOperations {
         System.out.println(" row updated");
     }
 
-//   public void updateEmployee(int eid, double payRate, int hours) {
-//        Employee e = em.find(Employee.class, eid);
-//       em.getTransaction().begin();
-//       e.setE_payRate(payRate);
-//        e.setE_hours(hours);
-//        em.persist(e);
-//        em.getTransaction().commit();
-//    }
     
 
-    public void updateEmpShop(int eid, double payRate, int hours) {
-        PartTime es = em.find(PartTime.class, eid);
+    public void updatePartTime(int eid, double payRate, int hours) {
+        PartTime pt = em.find(PartTime.class, eid);
         em.getTransaction().begin();
-        es.setPayRate(payRate);
-        es.setHours(hours);
-        em.persist(es);
+        pt.setPayRate(payRate);
+        pt.setHours(hours);
+        em.persist(pt);
         em.getTransaction().commit();
     }
     
-    public void updateEmpCarer(int eid, double salary) {
-        FullTime ec = em.find(FullTime.class, eid);
+    public void updateFullTime(int eid, double salary) {
+        FullTime ft = em.find(FullTime.class, eid);
         em.getTransaction().begin();
-        ec.setSalary(salary);
-        em.persist(ec);
+        ft.setSalary(salary);
+        em.persist(ft);
         em.getTransaction().commit();
     }
     
