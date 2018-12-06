@@ -27,8 +27,7 @@ public class Pet {
 
     @ManyToOne()
     @JoinColumn(name="EMPID")
-    private EmpCarer empC;
-//    private Employee emp;
+    private Employee emp;
 
     @ManyToOne()
     @JoinColumn(name="BREEDID")
@@ -83,12 +82,10 @@ public class Pet {
         this.p_price = p_price;
     }
     
-//    public void setEmp(Employee e){
-//        this.emp = e;
-//    }
+
     
-    public void setEmpC(EmpCarer e){
-        this.empC = e;
+    public void setEmp(Employee e){
+        this.emp = e;
    }
     
     public void setBreed(Breed b) {

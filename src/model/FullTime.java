@@ -10,22 +10,20 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("CARER")
+@DiscriminatorValue("FT")
 @PrimaryKeyJoinColumn(referencedColumnName = "empid")
 
 @SuppressWarnings("SerializableClass")
 
-public class EmpCarer extends Employee {
+public class FullTime extends Employee {
 
     private double salary;
 
-    @OneToMany(mappedBy = "emp", cascade = CascadeType.ALL)
-    private List<Pet> plist = new ArrayList<>();
 
-    public EmpCarer() {
+    public FullTime() {
     }
 
-    public EmpCarer(String e_name, String e_pNum, double salary) {
+    public FullTime(String e_name, String e_pNum, double salary) {
         super(e_name, e_pNum);
         this.salary = salary;
     }
@@ -41,15 +39,9 @@ public class EmpCarer extends Employee {
     @Override
     public String toString() {
         String s = super.toString() + " Carer Employee Salary: " + salary;
-        for (int i = 0; i < plist.size(); i++) {
-            s += "\n" + plist.get(i) + "\n";
-        }
+
         return s;
     }
 
-    public void addPet(Pet p) {
-        plist.add(p);
-        p.setEmpC(this);
-    }
 
 }

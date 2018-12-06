@@ -8,19 +8,19 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("SHOP")
+@DiscriminatorValue("PT")
 @PrimaryKeyJoinColumn(referencedColumnName = "empid")
 
 @SuppressWarnings("SerializableClass")
 
-public class EmpShop extends Employee {
+public class PartTime extends Employee {
     private int hours;
     private double payRate;
 
-    public EmpShop() {
+    public PartTime() {
     }
 
-    public EmpShop(String e_name, String e_pNum, double payRate, int hours) {
+    public PartTime(String e_name, String e_pNum, double payRate, int hours) {
         super(e_name, e_pNum);
         this.hours = hours;
         this.payRate = payRate;

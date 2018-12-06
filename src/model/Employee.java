@@ -25,8 +25,8 @@ public class Employee {
     private String e_pNum;
 
     
-//    @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
-//    private List<Pet> plist = new ArrayList<>();
+    @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
+    private List<Pet> plist = new ArrayList<>();
 
     public Employee() {
     }
@@ -62,10 +62,10 @@ public class Employee {
         this.empid = empid;
     }
 
-//    public void addPet(Pet p){
-//        plist.add(p);
-//        p.setEmp(this);
-//    }
+    public void addPet(Pet p){
+        plist.add(p);
+        p.setEmp(this);
+    }
 
 
    

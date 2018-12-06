@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.*;
 import model.Breed;
-import model.EmpCarer;
-import model.EmpShop;
+import model.FullTime;
+import model.PartTime;
 import model.Employee;
 import model.Food;
 import model.Pet;
@@ -84,12 +84,12 @@ public class PersistenceOperations {
     public void showEmpShop() {
         em.getTransaction().begin();
 
-        TypedQuery<EmpShop> query
+        TypedQuery<PartTime> query
                 = em.createQuery("SELECT es FROM EmpShop es ORDER BY es.empid",
-                        EmpShop.class);
-        List<EmpShop> results = query.getResultList();
+                        PartTime.class);
+        List<PartTime> results = query.getResultList();
 
-        for (EmpShop es : results) {
+        for (PartTime es : results) {
             System.out.println(es);
         }
         em.getTransaction().commit();
@@ -97,15 +97,15 @@ public class PersistenceOperations {
     
     
     
-    public void showEmpCarer() {
+    public void showFullTime(){
         em.getTransaction().begin();
 
-        TypedQuery<EmpCarer> query
-                = em.createQuery("SELECT ec FROM EmpCarer ec ORDER BY ec.empid",
-                        EmpCarer.class);
-        List<EmpCarer> results = query.getResultList();
+        TypedQuery<FullTime> query
+                = em.createQuery("SELECT ft FROM FULLTIME ft ORDER BY ft.empid",
+                        FullTime.class);
+        List<FullTime> results = query.getResultList();
 
-        for (EmpCarer ec : results) {
+        for (FullTime ec : results) {
             System.out.println(ec);
         }
         em.getTransaction().commit();
@@ -122,13 +122,13 @@ public class PersistenceOperations {
 //        em.getTransaction().begin();
 //        Employee e = new Employee(name, pNum, payRate, hours);
 //        em.persist(e);
-//        em.getTransaction().commit();
+//       em.getTransaction().commit();
 //    }
     
     //EmpShop
     public void addEmpShop(String name, String pNum, double payRate, int hours) {
         em.getTransaction().begin();
-        EmpShop e = new EmpShop(name, pNum, payRate, hours);
+        PartTime e = new PartTime(name, pNum, payRate, hours);
         em.persist(e);
         em.getTransaction().commit();
     }
@@ -136,7 +136,7 @@ public class PersistenceOperations {
     //EmpCarer
     public void addEmpCarer(String name, String pNum, double salary) {
         em.getTransaction().begin();
-        EmpCarer e = new EmpCarer(name, pNum, salary);
+        FullTime e = new FullTime(name, pNum, salary);
         em.persist(e);
         em.getTransaction().commit();
     }
@@ -179,11 +179,11 @@ public class PersistenceOperations {
         em.getTransaction().commit();
         System.out.println(" row updated");
     }
-//
-//    public void updateEmployee(int eid, double payRate, int hours) {
+
+//   public void updateEmployee(int eid, double payRate, int hours) {
 //        Employee e = em.find(Employee.class, eid);
-//        em.getTransaction().begin();
-//        e.setE_payRate(payRate);
+//       em.getTransaction().begin();
+//       e.setE_payRate(payRate);
 //        e.setE_hours(hours);
 //        em.persist(e);
 //        em.getTransaction().commit();
@@ -191,7 +191,7 @@ public class PersistenceOperations {
     
 
     public void updateEmpShop(int eid, double payRate, int hours) {
-        EmpShop es = em.find(EmpShop.class, eid);
+        PartTime es = em.find(PartTime.class, eid);
         em.getTransaction().begin();
         es.setPayRate(payRate);
         es.setHours(hours);
@@ -200,7 +200,7 @@ public class PersistenceOperations {
     }
     
     public void updateEmpCarer(int eid, double salary) {
-        EmpCarer ec = em.find(EmpCarer.class, eid);
+        FullTime ec = em.find(FullTime.class, eid);
         em.getTransaction().begin();
         ec.setSalary(salary);
         em.persist(ec);
@@ -232,10 +232,10 @@ public class PersistenceOperations {
         em.getTransaction().commit();
     }
     
-    public void veiwPetCarers(int eid) {
+    public void veiwPetEmployee(int eid) {
         em.getTransaction().begin();
-        EmpCarer ec = em.find(EmpCarer.class, eid);
-        System.out.println(ec);
+        Employee e = em.find(Employee.class, eid);
+        System.out.println(e);
         em.getTransaction().begin();
     }
 

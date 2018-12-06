@@ -2,27 +2,25 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PetShopCAPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    
-    
     <class>model.Breed</class>
     <class>model.Food</class>
     <class>model.Pet</class>
     <class>model.Employee</class>
+    <class>model.FullTime</class>
+    <class>model.PartTime</class>
     <properties>
-<!--
+      <!--
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE/>
       <property name="javax.persistence.jdbc.user" value="hr"/>
       <property name="javax.persistence.jdbc.driver" value="org.jdbc.OracleDriver"/>
       <property name="javax.persistence.jdbc.password" value="passhr"/>
 -->
-
-<!--
+      <!--
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="javax.persistence.jdbc.user" value="app"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="app"/>
 -->
-
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//10.10.2.7:1521/global1"/>
       <property name="javax.persistence.jdbc.user" value="x00148542"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>

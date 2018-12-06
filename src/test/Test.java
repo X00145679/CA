@@ -34,23 +34,23 @@ public class Test {
         so.dropFoodTable();
         so.dropEmployeeTable();
         so.dropPetFoodTable();
-        so.dropEmpCarerTable();
-        so.dropEmpShopTable();
+        so.dropFTTable();
+        so.dropPTTable();
 
         so.createBreedTable();
         so.createFoodTable();
         so.createEmployeeTable();
         so.createPetTable();
         so.createPetFoodTable();
-        so.createEMPCARERtable();
-        so.createEmpShoptable();
+        so.createPTtable();
+        so.createFTtable();
 
         so.fillBreedTable();
         so.fillFoodTable();
         so.fillEmployeeTable();
         so.fillPetTable();
-        so.fillEMPCARERtable();
-        so.fillEMPSHOPtable();
+        so.fillPTtable();
+        so.fillFTtable();
 
         PersistenceOperations po = new PersistenceOperations();
 
@@ -101,7 +101,7 @@ public class Test {
                     po.showFood();
                     break;
                 case 5:
-                    po.showEmpCarer();
+                    po.showFullTime();
                     break;
                 case 6:
                     po.showEmpShop();

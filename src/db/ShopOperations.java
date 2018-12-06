@@ -183,6 +183,7 @@ public class ShopOperations {
         // Create a Table           
         try {
             String sql = "CREATE TABLE EMPLOYEE (empid NUMBER PRIMARY KEY NOT NULL,"
+                    + "type VARCHAR2(30),"
                     + "e_name VARCHAR2(255),"
                     + "e_pNum VARCHAR2(255))";
 
@@ -196,59 +197,59 @@ public class ShopOperations {
     }
     
     //EmpCarer Table
-    public void dropEmpCarerTable() {
-        System.out.println("Checking for existence of EMPCARER table");
+    public void dropFTTable() {
+        System.out.println("Checking for existence of FULLTIME table");
         try {
-            String s1 = "DROP TABLE EMPCARER CASCADE CONSTRAINTS";
+            String s1 = "DROP TABLE FULLTIME CASCADE CONSTRAINTS";
             pstmt = conn.prepareStatement(s1);
             pstmt.executeUpdate();
             System.out.println("EMPCARER table dropped");
         } catch (SQLException ex) {
-
+            System.out.println("Error " + ex.getMessage());
         }
     }
     
-        public void createEMPCARERtable() {
+        public void createFTtable() {
         // Create a Table           
         try {
-            String sql = "CREATE TABLE EMPCARER (empid NUMBER PRIMARY KEY NOT NULL,"
-                    + "ec_salary NUMBER,"
+            String sql = "CREATE TABLE FULLTIME (empid NUMBER PRIMARY KEY NOT NULL,"
+                    + "ft_salary NUMBER,"
                     + "FOREIGN KEY (EMPID) REFERENCES EMPLOYEE (EMPID))";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
-                    + "FULLTIMEEMPLOYEE table" + ex.getMessage());
+                    + "EMPCARER table" + ex.getMessage());
         }
     }
         
             //EmpCarer Table
-    public void dropEmpShopTable() {
-        System.out.println("Checking for existence of EMPSHOP table");
+    public void dropPTTable() {
+        System.out.println("Checking for existence of PARTTIME table");
         try {
-            String s1 = "DROP TABLE EMPSHOP CASCADE CONSTRAINTS";
+            String s1 = "DROP TABLE PARTTIME CASCADE CONSTRAINTS";
             pstmt = conn.prepareStatement(s1);
             pstmt.executeUpdate();
-            System.out.println("EMPSHOP table dropped");
+            System.out.println("PARTTIME table dropped");
         } catch (SQLException ex) {
-
+                System.out.println("Error " + ex.getMessage());
         }
     }
     
-        public void createEmpShoptable() {
+        public void createPTtable() {
         // Create a Table           
         try {
-            String sql = "CREATE TABLE EMPSHOP (empid NUMBER PRIMARY KEY NOT NULL,"
-                    + "es_payRate NUMBER,"
-                    + "es_hours NUMBER,"
+            String sql = "CREATE TABLE PARTTIME(empid NUMBER PRIMARY KEY NOT NULL,"
+                    + "pt_payRate NUMBER,"
+                    + "pt_hours NUMBER,"
                     + "FOREIGN KEY (EMPID) REFERENCES EMPLOYEE (EMPID))";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
-                    + "FULLTIMEEMPLOYEE table" + ex.getMessage());
+                    + "PARTTIME table" + ex.getMessage());
         }
     }
     
@@ -322,7 +323,7 @@ public class ShopOperations {
             pstmt.executeUpdate();
             System.out.println("PETFOOD  table dropped");
         } catch (SQLException ex) {
-
+            System.out.println("Error " + ex.getMessage());
         }
     }
 
@@ -383,14 +384,14 @@ public class ShopOperations {
             pstmt.setDate(2, Date.valueOf("2018-01-21"));
             pstmt.setDouble(3, 130.0);
             pstmt.setInt(4, 4);
-            pstmt.setInt(5, 4);
+            pstmt.setInt(5, 5);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Ron");
             pstmt.setDate(2, Date.valueOf("2015-03-21"));
             pstmt.setDouble(3, 40.0);
             pstmt.setInt(4, 4);
-            pstmt.setInt(5, 4);
+            pstmt.setInt(5, 3);
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Dave");
@@ -410,31 +411,34 @@ public class ShopOperations {
     // Fill Employee Table
     public void fillEmployeeTable() {
         try {
-            String sql = "INSERT INTO EMPLOYEE VALUES(empid_seq.nextVal,?,?)";
+            String sql = "INSERT INTO EMPLOYEE VALUES(empid_seq.nextVal,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, "Dave");
-            pstmt.setString(2, "0873974053");
+            pstmt.setString(1, "PT");
+            pstmt.setString(2, "Dave");
+            pstmt.setString(3, "0873974053");
             pstmt.executeUpdate();
 
-            pstmt.setString(1, "Matt");
-            pstmt.setString(2, "0873544033");
-
+            pstmt.setString(1, "PT");
+            pstmt.setString(2, "Matt");
+            pstmt.setString(3, "0873544033");
             pstmt.executeUpdate();
 
-            pstmt.setString(1, "Steve");
-            pstmt.setString(2, "0833344053");
-
+            pstmt.setString(1, "PT");
+            pstmt.setString(2, "Steve");
+            pstmt.setString(3, "0833344053");
             pstmt.executeUpdate();
 
-            pstmt.setString(1, "Mike");
-            pstmt.setString(2, "0853684653");
-
+            pstmt.setString(1, "FT");
+            pstmt.setString(2, "Mike");
+            pstmt.setString(3, "0853684653");
             pstmt.executeUpdate();
 
-            pstmt.setString(1, "Scott");
-            pstmt.setString(2, "0843678893");
+            pstmt.setString(1, "FT");
+            pstmt.setString(2, "Scott");
+            pstmt.setString(3, "0843678893");
             pstmt.executeUpdate();
+            
 
             System.out.println("Employee table filled");
 
@@ -445,9 +449,9 @@ public class ShopOperations {
     }
     
     //Fill EmpCarer Table
-    public void fillEMPCARERtable(){
+    public void fillFTtable(){
              try {
-            String sql = "INSERT INTO EMPCARER VALUES(?,?)";
+            String sql = "INSERT INTO FULLTIMET VALUES(?,?)";
             pstmt = conn.prepareStatement(sql);
                        
             pstmt.setInt(1,4);
@@ -458,9 +462,6 @@ public class ShopOperations {
             pstmt.setDouble(2,35000);
             pstmt.executeUpdate();
 
-            pstmt.setInt(1,6);
-            pstmt.setDouble(2,24000);
-            pstmt.executeUpdate();
             
          } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
@@ -469,9 +470,9 @@ public class ShopOperations {
     }
     
     //Fill EmpShop Table
-    public void fillEMPSHOPtable(){
+    public void fillPTtable(){
              try {
-            String sql = "INSERT INTO EMPSHOP VALUES(?,?,?)";
+            String sql = "INSERT INTO PARTTIME VALUES(?,?,?)";
             pstmt = conn.prepareStatement(sql);
                        
             pstmt.setInt(1,1);
@@ -601,6 +602,8 @@ public class ShopOperations {
             
             pstmt.setInt(1,5);
             pstmt.setInt(2,4);
+            pstmt.executeUpdate();
+            
             pstmt.executeUpdate();
             
         } catch (SQLException ex) {
