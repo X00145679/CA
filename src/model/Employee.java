@@ -11,10 +11,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "EMPLOYEE")
+@Inheritance( strategy = InheritanceType.JOINED)
+@DiscriminatorColumn( name = "type" )
 
 @SequenceGenerator(name = "empid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
-
 
 public class Employee {
     @Id
@@ -22,20 +23,18 @@ public class Employee {
     private int empid;
     private String e_name;
     private String e_pNum;
-    private double e_payRate;
-    private int e_hours;
+
     
-    @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
-    private List<Pet> plist = new ArrayList<>();
+//    @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
+//    private List<Pet> plist = new ArrayList<>();
 
     public Employee() {
     }
 
-    public Employee(String e_name, String e_pNum, double e_payRate, int e_hours) {
+    public Employee(String e_name, String e_pNum) {
         this.e_name = e_name;
         this.e_pNum = e_pNum;
-        this.e_payRate = e_payRate;
-        this.e_hours = e_hours;
+
     }
 
     public String getE_name() {
@@ -54,13 +53,6 @@ public class Employee {
         this.e_pNum = e_pNum;
     }
 
-    public double getE_payRate() {
-        return e_payRate;
-    }
-
-    public void setE_payRate(double e_payRate) {
-        this.e_payRate = e_payRate;
-    }
 
     public int getEmpid() {
         return empid;
@@ -70,18 +62,10 @@ public class Employee {
         this.empid = empid;
     }
 
-    public int getE_hours() {
-        return e_hours;
-    }
-
-    public void setE_hours(int e_hours) {
-        this.e_hours = e_hours;
-    }
-    
-    public void addPet(Pet p){
-        plist.add(p);
-        p.setEmp(this);
-    }
+//    public void addPet(Pet p){
+//        plist.add(p);
+//        p.setEmp(this);
+//    }
 
 
    
@@ -89,12 +73,12 @@ public class Employee {
     public String toString() {
         String s = String.format(" Employee Id: %1$-10d"
                 + "Name: %2$-10s"
-                + "Phone Num: %3$-15s"
-                + "Pay Rate: %4$-10.2f"
-                + "Hours: %5$-10d",
-                empid, e_name, e_pNum, e_payRate, e_hours);
+                + "Phone Num: %3$-15s",
+                empid, e_name, e_pNum);
         
         return s;
     }
+    
+    
 
 }

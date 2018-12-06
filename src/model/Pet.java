@@ -27,7 +27,8 @@ public class Pet {
 
     @ManyToOne()
     @JoinColumn(name="EMPID")
-    private Employee emp;
+    private EmpCarer empC;
+//    private Employee emp;
 
     @ManyToOne()
     @JoinColumn(name="BREEDID")
@@ -82,9 +83,13 @@ public class Pet {
         this.p_price = p_price;
     }
     
-    public void setEmp(Employee e){
-        this.emp = e;
-    }
+//    public void setEmp(Employee e){
+//        this.emp = e;
+//    }
+    
+    public void setEmpC(EmpCarer e){
+        this.empC = e;
+   }
     
     public void setBreed(Breed b) {
         this.breed = b;
@@ -115,7 +120,7 @@ public class Pet {
     }
     
     public void printFood(){
-        System.out.println("Modules for: "+p_name);
+        System.out.println("Food for: "+p_name);
         for (int i = 0; i < flist.size(); i++) {
             System.out.println(flist.get(i));
             
