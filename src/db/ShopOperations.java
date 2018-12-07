@@ -279,7 +279,6 @@ public class ShopOperations {
         try {
             String sql = "CREATE TABLE BREED (breedid NUMBER PRIMARY KEY NOT NULL,"
                     + "b_name VARCHAR2(255),"
-                    + "b_exp_years NUMBER,"
                     + "b_size VARCHAR2(255))";
 
             pstmt = conn.prepareStatement(sql);
@@ -506,27 +505,23 @@ public class ShopOperations {
     //Fill Breed Table
     public void fillBreedTable() {
         try {
-            String sql1 = "INSERT INTO BREED VALUES(breedid_seq.nextVal,?,?,?)";
+            String sql1 = "INSERT INTO BREED VALUES(breedid_seq.nextVal,?,?)";
             pstmt = conn.prepareStatement(sql1);
 
             pstmt.setString(1, "Labrador");
-            pstmt.setInt(2, 12);
-            pstmt.setString(3, "Big");
+            pstmt.setString(2, "Big");
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Beagle");
-            pstmt.setInt(2, 13);
-            pstmt.setString(3, "Medium");
+            pstmt.setString(2, "Medium");
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Rottweiller");
-            pstmt.setInt(2, 9);
-            pstmt.setString(3, "Big");
+            pstmt.setString(2, "Big");
             pstmt.executeUpdate();
 
             pstmt.setString(1, "Pug");
-            pstmt.setInt(2, 14);
-            pstmt.setString(3, "Small");
+            pstmt.setString(2, "Small");
             pstmt.executeUpdate();
 
             System.out.println("Breed Table filled");
