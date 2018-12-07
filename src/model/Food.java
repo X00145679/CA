@@ -99,7 +99,7 @@ public class Food {
     @Override 
     public String toString() {
         String s = String.format(" Food Id: %1$-10s "
-                + "Name: %2$-10s"
+                + "Name: %2$-20s"
                 + "Price: %3$-10.2f"
                 + "Servings: %4$-10d"
                 + "Type: %5$-10s",

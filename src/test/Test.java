@@ -51,13 +51,14 @@ public class Test {
         so.fillPetTable();
         so.fillPTtable();
         so.fillFTtable();
+        so.fillPETFOODTable();
         
         PersistenceOperations po = new PersistenceOperations();
         
         while (true) {
             //Show Methods
-            System.out.println("Show:");
-            System.out.println("\nPlease press 1 to SHOW all PETS");
+            System.out.println("\nShow:");
+            System.out.println("Please press 1 to SHOW all PETS");
             System.out.println("Please press 2 to SHOW all EMPLOYEES");
             System.out.println("Please press 3 to SHOW all BREEDS");
             System.out.println("Please press 4 to SHOW all FOOD");
@@ -84,10 +85,11 @@ public class Test {
             //Query
             System.out.println("Query:");
             System.out.println("Please press 15 to VIEW PETFOOD");
-            System.out.println("Please press 16 to ADD a new PETFOOD\n");
-            //End
-            System.out.println("Please press 17 to EXIT");
+            System.out.println("Please press 16 to ADD a new PETFOOD");
+            System.out.println("Please press 17 to VIEW PETEMP\n");
             
+            //End
+            System.out.println("Press 18 to exit");
             int choice = in.nextInt();
             in.nextLine();
             
@@ -109,7 +111,7 @@ public class Test {
                     break;
                 case 6:
                     po.showPartTime();
-                
+                break;
                 case 7:
                     System.out.println("Please enter the name of the Employee "
                             + "you wish to add");
@@ -167,11 +169,12 @@ public class Test {
                     System.out.println("Please enter the SERVINGS of the Food "
                             + "you wish to add");
                     int servings = in.nextInt();
+                    in.nextLine();
                     System.out.println("Please enter the TYPE of the Food "
                             + "you wish to add");
-                    type = in.nextLine();
+                    String type1 = in.nextLine();
                     
-                    po.addFood(name, price, servings, type);
+                    po.addFood(name, price, servings, type1);
                     break;
                 case 10:
                     System.out.println("Enter the id of the Pet "
@@ -240,8 +243,13 @@ public class Test {
                     int fid = in.nextInt();
                     po.addPetFood(pid, fid);
                     break;
-                
                 case 17:
+                    System.out.println("Please enter the ID of the Employee whose Pets "
+                            + "you wish to see");
+                    id = in.nextInt();
+                    po.veiwPetEmployee(id);
+                    break;
+                case 18:
                     po.close();
                     so.closeDB();
                     System.exit(0);

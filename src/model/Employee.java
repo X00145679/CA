@@ -89,6 +89,12 @@ public class Employee {
         return s;
     }
     
-    
+    public void printPets() {
+        System.out.println("Employee that is in charge of these pets " + e_name);
+        for (int i = 0; i < plist.size(); i++) {
+            System.out.println(plist.get(i));
+            
+        }
+    }
 
 }

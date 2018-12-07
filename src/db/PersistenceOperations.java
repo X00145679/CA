@@ -75,8 +75,8 @@ public class PersistenceOperations {
                         Employee.class);
         List<Employee> results = query.getResultList();
 
-        for (Employee o : results) {
-            System.out.println(o);
+        for (Employee e : results) {
+            System.out.println(e);
         }
         em.getTransaction().commit();
     }
@@ -85,7 +85,7 @@ public class PersistenceOperations {
         em.getTransaction().begin();
 
         TypedQuery<PartTime> query
-                = em.createQuery("SELECT pt FROM parttime pt ORDER BY pt.empid",
+                = em.createQuery("SELECT pt FROM PartTime pt ORDER BY pt.empid",
                         PartTime.class);
         List<PartTime> results = query.getResultList();
 
@@ -101,7 +101,7 @@ public class PersistenceOperations {
         em.getTransaction().begin();
 
         TypedQuery<FullTime> query
-                = em.createQuery("SELECT ft FROM FULLTIME ft ORDER BY ft.empid",
+                = em.createQuery("SELECT ft FROM FullTime ft ORDER BY ft.empid",
                         FullTime.class);
         List<FullTime> results = query.getResultList();
 
@@ -126,7 +126,7 @@ public class PersistenceOperations {
     }
     
 
-    public void addFullTime(String name, String pNum, double salary) {
+    public void addFullTime( String name, String pNum, double salary) {
         em.getTransaction().begin();
         FullTime e = new FullTime(name, pNum, salary);
         em.persist(e);
@@ -230,8 +230,8 @@ public class PersistenceOperations {
     public void veiwPetEmployee(int eid) {
         em.getTransaction().begin();
         Employee e = em.find(Employee.class, eid);
-        System.out.println(e);
-        em.getTransaction().begin();
+        e.printPets();
+        em.getTransaction().commit();
     }
 
     //Close

@@ -16,9 +16,13 @@ public class ShopOperations {
             OracleDataSource ods = new OracleDataSource();
 
             // Tallaght
+//            ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
+//            ods.setUser("x00145679");
+//            ods.setPassword("db31Jan99");
+            
             ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
-            ods.setUser("x00145679");
-            ods.setPassword("db31Jan99");
+            ods.setUser("x00148542");
+            ods.setPassword("db21Feb99");
             
             // Home Oracle XE
 //            ods.setURL("jdbc:oracle:thin:HR/pmagee@localhost:1521:XE");
@@ -183,9 +187,9 @@ public class ShopOperations {
         // Create a Table           
         try {
             String sql = "CREATE TABLE EMPLOYEE (empid NUMBER PRIMARY KEY NOT NULL,"
-                    + "type VARCHAR2(30),"
-                    + "e_name VARCHAR2(255),"
-                    + "e_pNum VARCHAR2(255))";
+                    + "type VARCHAR2(5),"
+                    + "e_name VARCHAR2(30),"
+                    + "e_pNum VARCHAR2(30))";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -212,11 +216,12 @@ public class ShopOperations {
         public void createFTtable() {
         // Create a Table           
         try {
-            String sql = "CREATE TABLE FULLTIME (empid NUMBER PRIMARY KEY NOT NULL,"
+            String sql = "CREATE TABLE FULLTIME (empid NUMBER PRIMARY KEY,"
                     + "ft_salary NUMBER,"
                     + "FOREIGN KEY (EMPID) REFERENCES EMPLOYEE (EMPID))";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
+            System.out.println("TABLE FULLTIME created");
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
@@ -240,12 +245,13 @@ public class ShopOperations {
         public void createPTtable() {
         // Create a Table           
         try {
-            String sql = "CREATE TABLE PARTTIME(empid NUMBER PRIMARY KEY NOT NULL,"
+            String sql1 = "CREATE TABLE PARTTIME(empid NUMBER PRIMARY KEY,"
                     + "pt_payRate NUMBER,"
                     + "pt_hours NUMBER,"
                     + "FOREIGN KEY (EMPID) REFERENCES EMPLOYEE (EMPID))";
-            pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql1);
             pstmt.executeUpdate();
+            System.out.println("TABLE PARTTIME created");
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception creating "
@@ -451,7 +457,7 @@ public class ShopOperations {
     //Fill EmpCarer Table
     public void fillFTtable(){
              try {
-            String sql = "INSERT INTO FULLTIMET VALUES(?,?)";
+            String sql = "INSERT INTO FULLTIME VALUES(?,?)";
             pstmt = conn.prepareStatement(sql);
                        
             pstmt.setInt(1,4);
@@ -462,10 +468,10 @@ public class ShopOperations {
             pstmt.setDouble(2,35000);
             pstmt.executeUpdate();
 
-            
+                 System.out.println("FULLTIME table filled");
          } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
-                    + "EMPCARER table" + ex.getMessage());
+                    + "FULLTIME table" + ex.getMessage());
         }
     }
     
@@ -490,6 +496,7 @@ public class ShopOperations {
             pstmt.setInt(3,32);
             pstmt.executeUpdate();
             
+                 System.out.println("PARTTIME table filled");
          } catch (SQLException ex) {
             System.out.println("SQL Exception filling "
                     + "EMPSHOP table" + ex.getMessage());
@@ -604,7 +611,7 @@ public class ShopOperations {
             pstmt.setInt(2,4);
             pstmt.executeUpdate();
             
-            pstmt.executeUpdate();
+            System.out.println("PETFOOD table filled");
             
         } catch (SQLException ex) {
             System.out.println("SQL Exception filling "

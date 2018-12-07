@@ -17,28 +17,32 @@ import javax.persistence.*;
 
 public class FullTime extends Employee {
 
-    private double salary;
+    private double ft_salary;
 
 
     public FullTime() {
     }
 
+    public FullTime(double salary) {
+        this.ft_salary = salary;
+    }
+    
     public FullTime(String e_name, String e_pNum, double salary) {
         super(e_name, e_pNum);
-        this.salary = salary;
+        this.ft_salary = salary;
     }
 
     public double getSalary() {
-        return salary;
+        return ft_salary;
     }
 
     public void setSalary(double salary) {
-        this.salary = salary;
+        this.ft_salary = salary;
     }
 
     @Override
     public String toString() {
-        String s = super.toString() + " FullTime Employee Salary: " + salary;
+        String s = super.toString() + " FullTime Employee Salary: " + ft_salary;
 
         return s;
     }
