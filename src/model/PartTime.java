@@ -14,6 +14,7 @@ import javax.persistence.*;
 @SuppressWarnings("SerializableClass")
 
 public class PartTime extends Employee {
+
     private int pt_hours;
     private double pt_payRate;
 
@@ -32,7 +33,7 @@ public class PartTime extends Employee {
     public void setPayRate(double payRate) {
         this.pt_payRate = payRate;
     }
-    
+
     public PartTime() {
     }
 
@@ -41,17 +42,15 @@ public class PartTime extends Employee {
         this.pt_payRate = payRate;
     }
 
-    public PartTime(String e_name, String e_pNum, double payRate, int hours ) {
+    public PartTime(String e_name, String e_pNum, double payRate, int hours) {
         super(e_name, e_pNum);
         this.pt_hours = hours;
         this.pt_payRate = payRate;
     }
 
-    
     @Override
     public String toString() {
         return super.toString() + " PartTime Employee Hours: " + pt_hours + ", Pay Rate: " + pt_payRate;
     }
-    
-    
+
 }

@@ -9,7 +9,7 @@
     <class>model.FullTime</class>
     <class>model.PartTime</class>
     <properties>
-      <!--
+      <!--  
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE/>
       <property name="javax.persistence.jdbc.user" value="hr"/>
       <property name="javax.persistence.jdbc.driver" value="org.jdbc.OracleDriver"/>

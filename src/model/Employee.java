@@ -3,29 +3,29 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
 /**
  *
  * @author David
  */
 
-
 @Entity
 @Table(name = "EMPLOYEE")
-@Inheritance( strategy = InheritanceType.JOINED)
-@DiscriminatorColumn( name = "type" )
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type")
 
 @SequenceGenerator(name = "empid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
 
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empid_seq")
     private int empid;
     private String e_name;
     private String e_pNum;
 
-    
-    @OneToMany(mappedBy = "emp",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "emp", cascade = CascadeType.ALL)
     private List<Pet> plist = new ArrayList<>();
 
     public Employee() {
@@ -53,7 +53,6 @@ public class Employee {
         this.e_pNum = e_pNum;
     }
 
-
     public int getEmpid() {
         return empid;
     }
@@ -69,31 +68,27 @@ public class Employee {
     public void setPlist(List<Pet> plist) {
         this.plist = plist;
     }
-    
-    
 
-    public void addPet(Pet p){
+    public void addPet(Pet p) {
         plist.add(p);
         p.setEmp(this);
     }
 
-
-   
     @Override
     public String toString() {
         String s = String.format(" Employee Id: %1$-10d"
                 + "Name: %2$-10s"
                 + "Phone Num: %3$-15s",
                 empid, e_name, e_pNum);
-        
+
         return s;
     }
-    
+
     public void printPets() {
         System.out.println("Employee that is in charge of these pets " + e_name);
         for (int i = 0; i < plist.size(); i++) {
             System.out.println(plist.get(i));
-            
+
         }
     }
 

@@ -5,8 +5,6 @@
  */
 package model;
 
-
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -18,9 +16,8 @@ import javax.persistence.*;
 @SequenceGenerator(name = "foodid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
 
-
 public class Food {
-     
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "foodid_seq")
     private int foodid;
@@ -32,7 +29,6 @@ public class Food {
     @ManyToMany(mappedBy = "flist", cascade = CascadeType.PERSIST)
     private List<Pet> plist = new ArrayList<>();
 
-    
     public Food() {
     }
 
@@ -42,8 +38,8 @@ public class Food {
         this.f_servings = f_servings;
         this.f_type = f_type;
     }
-    
-    public void addPet(Pet p){
+
+    public void addPet(Pet p) {
         plist.add(p);
         p.getFlist().add(this);
     }
@@ -96,7 +92,7 @@ public class Food {
         this.plist = plist;
     }
 
-    @Override 
+    @Override
     public String toString() {
         String s = String.format(" Food Id: %1$-10s "
                 + "Name: %2$-20s"
@@ -104,14 +100,15 @@ public class Food {
                 + "Servings: %4$-10d"
                 + "Type: %5$-10s",
                 foodid, f_name, f_price, f_servings, f_type);
-        
+
         return s;
     }
-    public void printPets(){
+
+    public void printPets() {
         System.out.println("Pets that eat this food " + f_name);
         for (int i = 0; i < plist.size(); i++) {
             System.out.println(plist.get(i));
         }
     }
-    
+
 }
