@@ -248,7 +248,7 @@ public class Test {
                     po.addPetFood(pid, fid);
                     break;
                 case 18:
-                    System.out.println("Please enter the ID of the EEMPLOYEE whose PETS CARER "
+                    System.out.println("Please enter the ID of the EMPLOYEE whose PETS CARER "
                             + "you wish to see");
                     id = in.nextInt();
                     po.veiwPetEmployee(id);
