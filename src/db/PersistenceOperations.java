@@ -75,17 +75,17 @@ public class PersistenceOperations {
                         Employee.class);
         List<Employee> results = query.getResultList();
 
-        for (Employee o : results) {
-            System.out.println(o);
+        for (Employee e : results) {
+            System.out.println(e);
         }
         em.getTransaction().commit();
     }
-    
+
     public void showPartTime() {
         em.getTransaction().begin();
 
         TypedQuery<PartTime> query
-                = em.createQuery("SELECT pt FROM parttime pt ORDER BY pt.empid",
+                = em.createQuery("SELECT pt FROM PartTime pt ORDER BY pt.empid",
                         PartTime.class);
         List<PartTime> results = query.getResultList();
 
@@ -94,14 +94,12 @@ public class PersistenceOperations {
         }
         em.getTransaction().commit();
     }
-    
-    
-    
-    public void showFullTime(){
+
+    public void showFullTime() {
         em.getTransaction().begin();
 
         TypedQuery<FullTime> query
-                = em.createQuery("SELECT ft FROM FULLTIME ft ORDER BY ft.empid",
+                = em.createQuery("SELECT ft FROM FullTime ft ORDER BY ft.empid",
                         FullTime.class);
         List<FullTime> results = query.getResultList();
 
@@ -110,12 +108,6 @@ public class PersistenceOperations {
         }
         em.getTransaction().commit();
     }
-    
-    
-    
-    
-    
-    
 
     //Add Methods
     public void addPartTime(String name, String pNum, double payRate, int hours) {
@@ -123,39 +115,51 @@ public class PersistenceOperations {
         PartTime pt = new PartTime(name, pNum, payRate, hours);
         em.persist(pt);
         em.getTransaction().commit();
+        System.out.println(" row added");
     }
-    
 
     public void addFullTime(String name, String pNum, double salary) {
         em.getTransaction().begin();
         FullTime e = new FullTime(name, pNum, salary);
         em.persist(e);
         em.getTransaction().commit();
+        System.out.println(" row added");
     }
-    
+
     public void addPet(String p_name, Calendar p_dob, double p_price, int bid, int eid) {
         em.getTransaction().begin();
-        Pet p = new Pet(p_name,p_dob,p_price);
-        
+        Pet p = new Pet(p_name, p_dob, p_price);
+
         Employee e = em.find(Employee.class, eid);
-        if(e != null){
+        if (e != null) {
             e.addPet(p);
         }
-        
+
         Breed b = em.find(Breed.class, bid);
-        if(b != null){
+        if (b != null) {
             b.addPet(p);
         }
-        
+
         em.persist(p);
         em.getTransaction().commit();
+        System.out.println(" row added");
+    }
+
+    public void addBreed(String name, String size) {
+        em.getTransaction().begin();
+        Breed b = new Breed(name, size);
+        em.persist(b);
+        em.getTransaction().commit();
+        System.out.println(" row added");
+
     }
 
     public void addFood(String name, double price, int servings, String type) {
         em.getTransaction().begin();
-        Food f = new Food(name,price, servings, type);
+        Food f = new Food(name, price, servings, type);
         em.persist(f);
         em.getTransaction().commit();
+        System.out.println(" row added");
     }
 
     //Remove Methods
@@ -164,6 +168,7 @@ public class PersistenceOperations {
         em.getTransaction().begin();
         em.remove(p);
         em.getTransaction().commit();
+        System.out.println(" row removed");
     }
 
     public void removeEmployee(int empid) {
@@ -171,6 +176,7 @@ public class PersistenceOperations {
         em.getTransaction().begin();
         em.remove(e);
         em.getTransaction().commit();
+        System.out.println(" row removed");
     }
 
     //Update Methods
@@ -183,8 +189,6 @@ public class PersistenceOperations {
         System.out.println(" row updated");
     }
 
-    
-
     public void updatePartTime(int eid, double payRate, int hours) {
         PartTime pt = em.find(PartTime.class, eid);
         em.getTransaction().begin();
@@ -192,50 +196,54 @@ public class PersistenceOperations {
         pt.setHours(hours);
         em.persist(pt);
         em.getTransaction().commit();
+        System.out.println(" row updated");
     }
-    
+
     public void updateFullTime(int eid, double salary) {
         FullTime ft = em.find(FullTime.class, eid);
         em.getTransaction().begin();
         ft.setSalary(salary);
         em.persist(ft);
         em.getTransaction().commit();
+        System.out.println(" row updated");
     }
-    
-    public void updateFood(int fid, int servings, double price){
+
+    public void updateFood(int fid, int servings, double price) {
         Food f = em.find(Food.class, fid);
         em.getTransaction().begin();
         f.setF_servings(servings);
         f.setF_price(price);
         em.persist(f);
         em.getTransaction().commit();
+        System.out.println(" row updated");
     }
-    
+
     //Query
-    public void addPetFood(int pid, int fid){
+    public void addPetFood(int pid, int fid) {
         em.getTransaction().begin();
         Pet p = em.find(Pet.class, pid);
         Food f = em.find(Food.class, fid);
         f.addPet(p);
         em.getTransaction().commit();
+        System.out.println(" row added");
     }
-    
+
     public void veiwPetFood(int pid) {
         em.getTransaction().begin();
         Pet p = em.find(Pet.class, pid);
         p.printFood();
         em.getTransaction().commit();
     }
-    
+
     public void veiwPetEmployee(int eid) {
         em.getTransaction().begin();
         Employee e = em.find(Employee.class, eid);
-        System.out.println(e);
-        em.getTransaction().begin();
+        e.printPets();
+        em.getTransaction().commit();
     }
 
     //Close
-    public void close(){
+    public void close() {
         em.close();
         emf.close();
     }

@@ -9,35 +9,29 @@ import javax.persistence.*;
  *
  * @author David
  */
-
 @Entity
 @Table(name = "BREED")
 
 @SequenceGenerator(name = "breedid_seq", initialValue = 1, allocationSize = 1)
 @SuppressWarnings("SerializableClass")
 
-
 public class Breed {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "breedid_seq")
     private int breedid;
-    private String b_name,b_size;
-    private int b_exp_years;
-    
-    @OneToMany(mappedBy = "breed",cascade = CascadeType.ALL)
+    private String b_name, b_size;
+
+    @OneToMany(mappedBy = "breed", cascade = CascadeType.ALL)
     private List<Pet> plist = new ArrayList<>();
 
     public Breed() {
     }
-    
-   
 
-    public Breed(String b_name, String b_size, int b_exp_years) {
+    public Breed(String b_name, String b_size) {
         this.b_name = b_name;
-        this.b_exp_years = b_exp_years;
         this.b_size = b_size;
-        
+
     }
 
     public int getBreedid() {
@@ -64,14 +58,6 @@ public class Breed {
         this.b_size = b_size;
     }
 
-    public int getB_exp_years() {
-        return b_exp_years;
-    }
-
-    public void setB_exp_years(int b_exp_years) {
-        this.b_exp_years = b_exp_years;
-    }
-
     public List<Pet> getPlist() {
         return plist;
     }
@@ -79,25 +65,25 @@ public class Breed {
     public void setPlist(List<Pet> plist) {
         this.plist = plist;
     }
-    
-    public void addPet(Pet p){
+
+    public void addPet(Pet p) {
         plist.add(p);
         p.setBreed(this);
     }
-    
 
     @Override
     public String toString() {
-            return String.format(" Breed Id: %1$-10d"
+        String s = String.format(" Breed Id: %1$-10d"
                 + "Name: %2$-15s"
-                + "Size: %3$-10s"
-                + "Life Expectancy: %1$-10d",
-                breedid, b_name, b_size, b_exp_years);
+                + "Size: %3$-10s",
+                breedid, b_name, b_size);
+
+        for (int i = 0; i < plist.size(); i++) {
+            s += "\n        " + plist.get(i);
+        }
+
+        s += "\n";
+        return s;
     }
-    
-    
-    
-    
-    
-    
+
 }
